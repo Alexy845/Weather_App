@@ -11,8 +11,8 @@
                         <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <TextBox x:Name="searchBox" Grid.Row="0" Margin="10" 
-                         TextChanged="SearchBox_OnTextChanged"/>
+                <TextBox x:Name="searchBox" Grid.Row="0" Margin="10" />
+                <Button x:Name="searchButton" Grid.Row="0" Margin="10" Content="Search" Click="SearchButton_Click"/>
 
                 <ListBox x:Name="resultsBox" Grid.Row="1" Margin="10"/>
         </Grid>
