@@ -5,5 +5,5 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Weather_App.MainWindow"
         Title="Weather_App">
-    Welcome to Avalonia!
+    Welcome to Avalonia B2!
 </Window>
