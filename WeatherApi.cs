@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Weather_App;
 
@@ -14,10 +15,10 @@ public class WeatherApi
         _client = new HttpClient();
     }
 
-    public async Task<string> GetWeatherForecast()
+    public async Task<API_Class> GetWeatherForecast()
     {
         var response = await _client.GetAsync($"{BaseUrl}{ApiKey}");
         response.EnsureSuccessStatusCode();
-        return await response.Content.ReadAsStringAsync();
+        return JsonConvert.DeserializeObject<API_Class>(await response.Content.ReadAsStringAsync());
     }
 }
