@@ -1,9 +1,0 @@
-bin
-/bin
-/bin/*
-obj
-/obj
-/obj/*
-.idea
-/.idea
-/.idea/*
