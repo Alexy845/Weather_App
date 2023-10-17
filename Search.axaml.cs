@@ -1,5 +1,7 @@
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -23,15 +25,34 @@ public partial class Search : Window
     
     public async void GetWeather(string ville)
     {
-        foreach (var i in weatherApi.GetAllCity())
+        weatherApi.GetCity(ville);
+        while (!weatherApi.Ok)
         {
-            if (i.name.ToLower().Contains(ville.ToLower()) && i.name.ToLower().StartsWith(ville.ToLower()))
-            {
-                var weather = await weatherApi.GetWeatherForecast(i.id.ToString());
-                if (weather == null)
+                
+        }
+        weatherApi.Ok = false;
+        foreach (var i in weatherApi.AllCity)
+        {
+            
+                var weather = await weatherApi.GetWeatherForecast(i.lat, i.lon);
+                if (weather == null || !RemoveAccents(weather.name.ToLower()).Contains(RemoveAccents(ville.ToLower())))
                     continue;
                 Console.WriteLine($"{weather.name} : {weather.id} -> {weather.coord.lon} ; {weather.coord.lat}" );
+        }
+    }
+    static string RemoveAccents(string input)
+    {
+        string normalized = input.Normalize(NormalizationForm.FormD);
+        StringBuilder builder = new StringBuilder();
+
+        foreach (char c in normalized)
+        {
+            if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+            {
+                builder.Append(c);
             }
         }
+
+        return builder.ToString();
     }
 }

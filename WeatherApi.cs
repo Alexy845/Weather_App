@@ -11,25 +11,26 @@ public class WeatherApi
 {
     private readonly HttpClient _client;
     private const string ApiKey = "2a2922af3fb2b058c284c0fc51f3348e";
-    private const string BaseUrl = "https://api.openweathermap.org/data/2.5/weather?id={city id}&appid=";
-    private static readonly List<City>? AllCity = ParseAllCity();
+    private const string BaseUrl = "https://api.openweathermap.org/data/2.5/weather?lat={city id}&appid=";
+    public List<City1>? AllCity;
 
     public WeatherApi()
     {
         _client = new HttpClient();
-        GetCity("vl");
     }
+
+    public bool Ok { get; set; }
 
     public async void GetCity(string ville)
     {
-        string requestUrl = $"http://api.openweathermap.org/geo/1.0/direct?q=Bordeaux&limit=5&appid={ApiKey}";
+        ville = ville.Replace(" ", "+");
+        string requestUrl = $"http://api.openweathermap.org/geo/1.0/direct?q={ville}&limit=5&appid={ApiKey}";
         try
         {
             HttpResponseMessage response =  await _client.GetAsync(requestUrl);
             response.EnsureSuccessStatusCode();
-            string responseBody =  await response.Content.ReadAsStringAsync();
-
-            Console.WriteLine(responseBody);
+            AllCity = JsonConvert.DeserializeObject<List<City1>>(await response.Content.ReadAsStringAsync());
+            Ok = true;
         }
         catch(HttpRequestException e)
         {
@@ -37,23 +38,13 @@ public class WeatherApi
         }
     }
 
-    public List<City>? GetAllCity()
+    public async Task<ApiClass?> GetWeatherForecast(float lat, float lon)
     {
-        return AllCity;
-    }
-
-    public async Task<ApiClass?> GetWeatherForecast(string ville)
-    {
-        var response = await _client.GetAsync($"{BaseUrl.Replace("{city id}", ville)}{ApiKey}");
+        var response = await _client.GetAsync($"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={ApiKey}");
         if (!response.IsSuccessStatusCode)
             return null;
         response.EnsureSuccessStatusCode();
         return JsonConvert.DeserializeObject<ApiClass>(await response.Content.ReadAsStringAsync());
-    }
-    
-    private static List<City>? ParseAllCity()
-    {
-        return JsonConvert.DeserializeObject<List<City>>(File.ReadAllText("../../../city.list.json"));
     }
     
     public class ApiClass
@@ -106,6 +97,13 @@ public class WeatherApi
     }
 }
 
+
+
+
+
+
+
+
 public class Coord
 {
     public float lon { get; set; }
@@ -128,4 +126,14 @@ public class City
     public string country { get; set; }
     public string state { get; set; }
     
+}
+
+
+public class City1
+{
+    public string name { get; set; }
+    public float lat { get; set; }
+    public float lon { get; set; }
+    public string country { get; set; }
+    public string state { get; set; }
 }
