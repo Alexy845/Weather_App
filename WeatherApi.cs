@@ -10,13 +10,31 @@ namespace Weather_App;
 public class WeatherApi
 {
     private readonly HttpClient _client;
-    private const string ApiKey = "f9c08fb1f9479e2df187b8aed9d4fd42";
+    private const string ApiKey = "2a2922af3fb2b058c284c0fc51f3348e";
     private const string BaseUrl = "https://api.openweathermap.org/data/2.5/weather?id={city id}&appid=";
     private static readonly List<City>? AllCity = ParseAllCity();
 
     public WeatherApi()
     {
         _client = new HttpClient();
+        GetCity("vl");
+    }
+
+    public async void GetCity(string ville)
+    {
+        string requestUrl = $"http://api.openweathermap.org/geo/1.0/direct?q=Bordeaux&limit=5&appid={ApiKey}";
+        try
+        {
+            HttpResponseMessage response =  await _client.GetAsync(requestUrl);
+            response.EnsureSuccessStatusCode();
+            string responseBody =  await response.Content.ReadAsStringAsync();
+
+            Console.WriteLine(responseBody);
+        }
+        catch(HttpRequestException e)
+        {
+            Console.WriteLine($"Erreur : {e.Message}");
+        }
     }
 
     public List<City>? GetAllCity()
