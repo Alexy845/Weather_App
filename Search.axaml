@@ -6,14 +6,20 @@
         x:Class="Weather_App.Search"
         Title="Search">
         <Grid>
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition />
                         <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <TextBox x:Name="searchBox" Grid.Row="0" Margin="10" />
-                <Button x:Name="searchButton" Grid.Row="0" Margin="10" Content="Search" Click="SearchButton_Click"/>
+                <TextBox x:Name="SearchBox" Grid.Row="0" Grid.Column="0" Margin="10" />
+                <TextBox x:Name="CountryBox" Grid.Row="0" Grid.Column="1" Margin="10"/>
+                <Button x:Name="SearchButton" Grid.Row="1" Grid.Column="0" Margin="10" Content="Search" Click="SearchButton_Click"/>
 
-                <ListBox x:Name="resultsBox" Grid.Row="1" Margin="10"/>
+                <ListBox x:Name="ResultsBox" Grid.Row="2" Grid.Column="0" Margin="10" ItemsSource=""/>
         </Grid>
 </Window>
