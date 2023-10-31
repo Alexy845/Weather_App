@@ -3,7 +3,213 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        MinHeight="300"
+        MinWidth="500"
+        Background="Black"
+        Opacity="0.6"
+        BorderThickness="0"
+        BorderBrush="Transparent"
+        WindowStartupLocation="CenterScreen"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="True"
         x:Class="Weather_App.MainWindow"
         Title="Weather_App">
-    Welcome to Avalonia B2!
+        
+    <!-- Anthracite : #3E3E3E -->
+        <!-- Orange : #F4722B -->
+        <!-- Beige : #F6E7C1 -->
+        <!-- Beige-marron : #B3A78C -->
+        
+        <Window.Styles>
+            <Style Selector="TabItem">
+                <Setter Property="Foreground" Value="#EDEDED"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Width" Value="180"/>
+                <Setter Property="RenderTransform" Value=""/>
+                <Setter Property="FontSize" Value="16"></Setter>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+           </Style>
+        </Window.Styles>
+    
+        
+        <RelativePanel>
+            
+            <!--Blur-->
+            <Panel>
+                <ExperimentalAcrylicBorder IsHitTestVisible="False">
+                    <ExperimentalAcrylicBorder.Material>
+                        <ExperimentalAcrylicMaterial
+                            BackgroundSource="Digger"
+                            TintColor="Black"
+                            TintOpacity="1"
+                            MaterialOpacity="0.65" />
+                    </ExperimentalAcrylicBorder.Material>
+                </ExperimentalAcrylicBorder>
+            </Panel>
+                
+            <!--SearchBar-->
+            <Rectangle Fill="#3E3E3E"
+                       Height="800"
+                       Width="50"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Opacity="0.3">
+            </Rectangle>
+                
+                <StackPanel Orientation="Vertical"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center">
+                    
+                    <TextBlock Text="Weather App"
+                               Foreground="#EDEDED"
+                               FontSize="8"
+                               FontWeight="Bold"
+                               TextAlignment="Left"
+                               Margin="0,20,0,30"/>
+                    
+                    <Border BorderThickness="0,0.5,0,0"
+                            Opacity="0.4"
+                            BorderBrush="#EDEDED"
+                            Width="50"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,20"/>
+                    
+                    <TabControl TabStripPlacement="Left" Margin="-10,0,0,0" SelectedIndex="2">
+                        
+                        <TabItem Width="100">
+                            
+                            <TabItem.Header>
+                                <PathIcon Data="{StaticResource search_regular}"/>
+                            </TabItem.Header>
+                            
+                            <StackPanel>
+                                
+                                <AutoCompleteBox x:Name="SearchBar"
+                                                 Height="30"
+                                                 Width="250"
+                                                 Foreground="#EDEDED"
+                                                 BorderThickness="0.2"
+                                                 BorderBrush="Transparent"
+                                                 Margin="50,50,0,0"
+                                                 CornerRadius="5"
+                                                 Watermark="Enter a country"
+                                                 FilterMode="StartsWith"
+                                                 RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                                 RelativePanel.AlignTopWithPanel="True"/>
+                                
+                                <TextBlock>Nom de la ville</TextBlock>
+                                <TextBlock>Latitude de la ville</TextBlock>
+                                <TextBlock>Longitude de la ville</TextBlock>
+                                <TextBlock>Température °C</TextBlock>
+                                <TextBlock>Courte description du temps</TextBlock>
+                                <TextBlock>Humidité</TextBlock>
+                                <Image/>
+                                
+                            </StackPanel>
+                            
+                        </TabItem>
+                        
+                        <TabItem>
+                            <TabItem.Header>
+                                <PathIcon Data="{StaticResource calendar_month_regular}"/>
+                            </TabItem.Header>
+                            <StackPanel>
+                                <Grid ColumnDefinitions="100,100,100,100,100">
+                                    <StackPanel Grid.Column="0" Background="Blue" Height="350" Width="">
+                                        <TextBlock Text="prevision1"/>
+                                    </StackPanel>
+                                    
+                                    <StackPanel Grid.Column="1" Background="Brown">
+                                        <TextBlock Text="prevision2"/>
+                                    </StackPanel>
+                                    
+                                    <StackPanel Grid.Column="2" Background="Chartreuse">
+                                        <TextBlock Text="prevision3"/>
+                                    </StackPanel>
+                                    
+                                    <StackPanel Grid.Column="3" Background="Coral">
+                                        <TextBlock Text="prevision4"/>
+                                    </StackPanel>
+                                    
+                                    <StackPanel Grid.Column="4" Background="Crimson">
+                                        <TextBlock Text="prevision5"/>
+                                    </StackPanel>
+
+                                </Grid>
+                            </StackPanel>
+                        </TabItem>
+                        
+                        <TabItem HorizontalContentAlignment="Left" >
+                            <TabItem.Header>
+                                <PathIcon Data="{StaticResource settings_regular}"/>
+                            </TabItem.Header>
+                            <WrapPanel Orientation="Vertical">
+                                
+                                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#EDEDED">
+                                    Choose a language:
+                                </TextBlock>
+                                
+                                <ComboBox BorderThickness="0.2" 
+                                          SelectedIndex="10"
+                                          Opacity="2"
+                                          MaxDropDownHeight="100" 
+                                          HorizontalAlignment="Left" 
+                                          VerticalAlignment="Center">
+                                    <ComboBoxItem>Afrikaans</ComboBoxItem>
+                                    <ComboBoxItem>Albanian</ComboBoxItem>
+                                    <ComboBoxItem>Arabic</ComboBoxItem>
+                                    <ComboBoxItem>Azerbaijani</ComboBoxItem>
+                                    <ComboBoxItem>Bulgarian</ComboBoxItem>
+                                    <ComboBoxItem>Catalan</ComboBoxItem>
+                                    <ComboBoxItem>Czech</ComboBoxItem>
+                                    <ComboBoxItem>Danish</ComboBoxItem>
+                                    <ComboBoxItem>German</ComboBoxItem>
+                                    <ComboBoxItem>Greek</ComboBoxItem>
+                                    <ComboBoxItem>English</ComboBoxItem>
+                                    <ComboBoxItem>Basque</ComboBoxItem>
+                                    <ComboBoxItem>Persian (Farsi)</ComboBoxItem>
+                                    <ComboBoxItem>Finnish</ComboBoxItem>
+                                    <ComboBoxItem>French</ComboBoxItem>
+                                    <ComboBoxItem>Galician</ComboBoxItem>
+                                    <ComboBoxItem>Hebrew</ComboBoxItem>
+                                    <ComboBoxItem>Hindi</ComboBoxItem>
+                                    <ComboBoxItem>Croatian</ComboBoxItem>
+                                    <ComboBoxItem>Hungarian</ComboBoxItem>
+                                    <ComboBoxItem>Indonesian</ComboBoxItem>
+                                    <ComboBoxItem>Italian</ComboBoxItem>
+                                    <ComboBoxItem>Japanese</ComboBoxItem>
+                                    <ComboBoxItem>Korean</ComboBoxItem>
+                                    <ComboBoxItem>Korean</ComboBoxItem>
+                                    <ComboBoxItem>Lithuanian</ComboBoxItem>
+                                    <ComboBoxItem>Macedonian</ComboBoxItem>
+                                    <ComboBoxItem>Norwegian</ComboBoxItem>
+                                    <ComboBoxItem>Dutch</ComboBoxItem>
+                                    <ComboBoxItem>Polish</ComboBoxItem>
+                                    <ComboBoxItem>Portuguese</ComboBoxItem>
+                                    <ComboBoxItem>Português Brasil</ComboBoxItem>
+                                    <ComboBoxItem>Romanian</ComboBoxItem>
+                                    <ComboBoxItem>Russian</ComboBoxItem>
+                                    <ComboBoxItem>Swedish</ComboBoxItem>
+                                    <ComboBoxItem>Slovak</ComboBoxItem>
+                                    <ComboBoxItem>Slovenian</ComboBoxItem>
+                                    <ComboBoxItem>Spanish</ComboBoxItem>
+                                    <ComboBoxItem>Serbian</ComboBoxItem>
+                                    <ComboBoxItem>Thai</ComboBoxItem>
+                                    <ComboBoxItem>Turkish</ComboBoxItem>
+                                    <ComboBoxItem>Ukrainian</ComboBoxItem>
+                                    <ComboBoxItem>Vietnamese</ComboBoxItem>
+                                    <ComboBoxItem>Chinese Simplified</ComboBoxItem>
+                                    <ComboBoxItem>Chinese Traditional</ComboBoxItem>
+                                    <ComboBoxItem>Zulu</ComboBoxItem>
+                                </ComboBox>
+                                
+                            </WrapPanel>
+                            
+                        </TabItem>
+                    </TabControl>
+                    
+                </StackPanel>
+                
+        </RelativePanel>
 </Window>
