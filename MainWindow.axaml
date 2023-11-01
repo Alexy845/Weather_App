@@ -146,13 +146,7 @@
                                         Click="SearchButton_Click"/>
                                 
                                 <ListBox x:Name="ResultsBox" Margin="10" ItemsSource=""/>
-                                
-                                <!-- <TextBlock FontSize="25">Nom de la ville</TextBlock> -->
-                                <!-- <TextBlock FontSize="50">Température °C</TextBlock> -->
-                                <!-- <TextBlock FontSize="30">Courte description du temps</TextBlock> -->
-                                <!-- <TextBlock FontSize="18">Latitude de la ville</TextBlock> -->
-                                <!-- <TextBlock FontSize="18">Longitude de la ville</TextBlock> -->
-                                <!-- <TextBlock FontSize="18">Humidité %</TextBlock> -->
+                                <PathIcon Data="{StaticResource search_regular}"/>
                                 
                                 
                             </StackPanel>

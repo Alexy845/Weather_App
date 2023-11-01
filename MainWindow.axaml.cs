@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
+
 namespace Weather_App;
 
 public partial class MainWindow : Window
@@ -37,8 +38,9 @@ public partial class MainWindow : Window
             items.Add($"Latitude : {coord.lat}");
             items.Add($"Longitude : {coord.lon}");
             items.Add($"Humidity : {main.humidity}%");
-
             ResultsBox.ItemsSource = items;
+            
+            // Conversion.DownloadImageFromUrl($"http://openweathermap.org/img/w/{weatherList[0].icon}.png");
         }
     }
 }
