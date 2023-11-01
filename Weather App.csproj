@@ -22,6 +22,6 @@
 
 
     <ItemGroup>
-      <Compile Remove="WeatherApi.cs" />
+      <Content Include="Weather_App.sln" />
     </ItemGroup>
 </Project>
