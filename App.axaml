@@ -6,5 +6,6 @@
 
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="avares://Weather App/Icones.axaml"></StyleInclude>
     </Application.Styles>
 </Application>
