@@ -127,16 +127,32 @@
                                                  Height="30"
                                                  Width="250"
                                                  Margin="50,0,0,30"
+                                                 Watermark="Enter a city"
+                                                 RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                                 RelativePanel.AlignTopWithPanel="True"/>
+                                <AutoCompleteBox x:Name="CountryBar"
+                                                 Height="30"
+                                                 Width="250"
+                                                 Margin="50,0,0,30"
                                                  Watermark="Enter a country"
                                                  RelativePanel.AlignHorizontalCenterWithPanel="True"
                                                  RelativePanel.AlignTopWithPanel="True"/>
                                 
-                                <TextBlock FontSize="25">Nom de la ville</TextBlock>
-                                <TextBlock FontSize="50">Température °C</TextBlock>
-                                <TextBlock FontSize="30">Courte description du temps</TextBlock>
-                                <TextBlock FontSize="18">Latitude de la ville</TextBlock>
-                                <TextBlock FontSize="18">Longitude de la ville</TextBlock>
-                                <TextBlock FontSize="18">Humidité %</TextBlock>
+                                <Button x:Name="SearchButton" 
+                                        RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                        RelativePanel.AlignTopWithPanel="True" 
+                                        Margin="10" 
+                                        Content="Search" 
+                                        Click="SearchButton_Click"/>
+                                
+                                <ListBox x:Name="ResultsBox" Margin="10" ItemsSource=""/>
+                                
+                                <!-- <TextBlock FontSize="25">Nom de la ville</TextBlock> -->
+                                <!-- <TextBlock FontSize="50">Température °C</TextBlock> -->
+                                <!-- <TextBlock FontSize="30">Courte description du temps</TextBlock> -->
+                                <!-- <TextBlock FontSize="18">Latitude de la ville</TextBlock> -->
+                                <!-- <TextBlock FontSize="18">Longitude de la ville</TextBlock> -->
+                                <!-- <TextBlock FontSize="18">Humidité %</TextBlock> -->
                                 
                                 
                             </StackPanel>
