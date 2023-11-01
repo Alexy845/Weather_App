@@ -2,23 +2,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        MinHeight="500"
+        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
+        MinHeight="520"
         MinWidth="490"
         Background="Black"
         Opacity="0.8"
-        BorderThickness="0"
         BorderBrush="Transparent"
         WindowStartupLocation="CenterScreen"
         TransparencyLevelHint="AcrylicBlur"
         ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="PreferSystemChrome"
         x:Class="Weather_App.MainWindow"
         Title="Weather_App">
         
-        <!-- Anthracite : #3E3E3E -->
-        <!-- Orange : #F4722B -->
-        <!-- Beige : #F6E7C1 -->
-        <!-- Beige-marron : #B3A78C -->
+        <!-- BleuNoir : #03001C -->
+        <!-- Blanco : #EDEDED -->
+        <!-- Noir : Black -->
         
         <Window.Styles>
             
@@ -41,7 +40,7 @@
            </Style>
             
             <Style Selector="ComboBox">
-                <Setter Property="Background" Value="#3E3E3E"/>
+                <Setter Property="Background" Value="#03001C"/>
                 <Setter Property="Foreground" Value="#EDEDED"/>
                 <Setter Property="Opacity" Value="2"/>
                 <Setter Property="BorderThickness" Value="0.2"/>
@@ -60,7 +59,7 @@
             
             <!--SearchBar_Style-->
             <Style Selector="AutoCompleteBox">
-                <Setter Property="Background" Value="#3E3E3E"/>
+                <Setter Property="Background" Value="#03001C"/>
                 <Setter Property="Opacity" Value="0.8"/>
                 <Setter Property="BorderThickness" Value="0.2"/>
                 <Setter Property="BorderBrush" Value="#EDEDED"/>
@@ -71,204 +70,281 @@
             
         </Window.Styles>
     
-        
-        <RelativePanel>
-            
-            <!--Blur-->
-            <Panel>
-                <ExperimentalAcrylicBorder IsHitTestVisible="False">
-                    <ExperimentalAcrylicBorder.Material>
-                        <ExperimentalAcrylicMaterial
-                            BackgroundSource="Digger"
-                            TintColor="Black"
-                            TintOpacity="1"
-                            MaterialOpacity="0.65" />
-                    </ExperimentalAcrylicBorder.Material>
-                </ExperimentalAcrylicBorder>
-            </Panel>
-                
-            <!--SearchBar-->
-            <Rectangle Fill="#3E3E3E"
-                       Height="800"
-                       Width="50"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Opacity="0.3">
-            </Rectangle>
-                
-                <StackPanel Orientation="Vertical"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center">
-                    
-                    <TextBlock Text="Weather App"
-                               FontSize="8"
-                               FontWeight="Bold"
-                               TextAlignment="Left"
-                               Margin="0,20,0,30"/>
-                    
-                    <Border BorderThickness="0,0.5,0,0"
-                            Opacity="0.4"
-                            BorderBrush="#EDEDED"
-                            Width="50"
-                            HorizontalAlignment="Left"
-                            Margin="0,0,0,20"/>
-                    
-                    <TabControl TabStripPlacement="Left" Foreground="Chartreuse" Margin="-10,0,0,0" SelectedIndex="2">
-                        
-                        <TabItem>
-                            <!--Home/search-->
-                            <TabItem.Header>
-                                <PathIcon Data="{StaticResource search_regular}"/>
-                            </TabItem.Header>
-                            
-                            <StackPanel>
-                                
-                                <AutoCompleteBox x:Name="SearchBar"
-                                                 Height="30"
-                                                 Width="250"
-                                                 Margin="50,0,0,30"
-                                                 Watermark="Enter a country"
-                                                 RelativePanel.AlignHorizontalCenterWithPanel="True"
-                                                 RelativePanel.AlignTopWithPanel="True"/>
-                                
-                                <TextBlock FontSize="25">Nom de la ville</TextBlock>
-                                <TextBlock FontSize="50">Température °C</TextBlock>
-                                <TextBlock FontSize="30">Courte description du temps</TextBlock>
-                                <TextBlock FontSize="18">Latitude de la ville</TextBlock>
-                                <TextBlock FontSize="18">Longitude de la ville</TextBlock>
-                                <TextBlock FontSize="18">Humidité %</TextBlock>
-                                
-                                
-                            </StackPanel>
-                            
-                        </TabItem>
-                        
-                        <!--Forecast-->
-                        <TabItem>
-                            <TabItem.Header>
-                                <PathIcon Data="{StaticResource calendar_month_regular}"/>
-                            </TabItem.Header>
-                            
-                            <StackPanel>
-                                
-                                <Grid ColumnDefinitions="100,100,100,100,100">
-                                    
-                                    <StackPanel Grid.Column="0" Background="Blue" Height="350">
-                                        <TextBlock Text="prevision1"/>
-                                    </StackPanel>
-                                    
-                                    <StackPanel Grid.Column="1" Background="Brown">
-                                        <TextBlock Text="prevision2"/>
-                                    </StackPanel>
-                                    
-                                    <StackPanel Grid.Column="2" Background="Chartreuse">
-                                        <TextBlock Text="prevision3"/>
-                                    </StackPanel>
-                                    
-                                    <StackPanel Grid.Column="3" Background="Coral">
-                                        <TextBlock Text="prevision4"/>
-                                    </StackPanel>
-                                    
-                                    <StackPanel Grid.Column="4" Background="Crimson">
-                                        <TextBlock Text="prevision5"/>
-                                    </StackPanel>
 
+    
+        <Panel>
+            
+            <!--AcrylicBlur-->
+            <ExperimentalAcrylicBorder IsHitTestVisible="False">
+                                <ExperimentalAcrylicBorder.Material>
+                                    <ExperimentalAcrylicMaterial
+                                        BackgroundSource="Digger"
+                                        TintColor="#03001C"
+                                        TintOpacity="1"
+                                        MaterialOpacity="0.9" />
+                                </ExperimentalAcrylicBorder.Material>
+                            </ExperimentalAcrylicBorder>
+            
+            
+            <Grid RowDefinitions="35,*">
+                
+                <!--Logo-->
+                <TextBlock Grid.Row="0"
+                           FontSize="12"
+                           FontWeight="Light"
+                           Margin="20,0"
+                           VerticalAlignment="Center">
+                    Weather App
+                </TextBlock>
+                
+                
+                <Grid Grid.Row="1" ColumnDefinitions="50,*">
+                        
+                        <!--ToolBar-->
+                        <Rectangle Grid.Column="0" Grid.Row="0"
+                                   Fill="Black"
+                                   Height="800"
+                                   Width="50"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Left"
+                                   Opacity="0.3"/>
+                        <Border Grid.Column="0" 
+                                BorderThickness="0,0.5,0,0"
+                                Opacity="0.4"
+                                BorderBrush="#EDEDED"
+                                Width="8000"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Margin="0,0,0,0"/>
+                        
+                        <!--Onglets-->
+                        <TabControl Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    TabStripPlacement="Left"
+                                    Margin="-8,0,0,0"
+                                    SelectedIndex="0">
+                        
+                            <TabItem>
+                                <!--Home/search-->
+                                <TabItem.Header>
+                                    <PathIcon Data="{StaticResource search_regular}"/>
+                                </TabItem.Header>
+                                
+                                <Grid RowDefinitions="60,180,*">
+                                    
+                                    <AutoCompleteBox Grid.Row="0"
+                                                     Height="30"
+                                                     Width="250"
+                                                     Margin="0,0,0,0"
+                                                     Watermark="Enter a location ..."
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"/>
+                                    
+                                    <Grid Grid.Row="1">
+                                        <TextBlock
+                                                   FontSize="25"
+                                                   VerticalAlignment="Top"
+                                                   HorizontalAlignment="Right"
+                                                   Margin="0,30,80,0">
+                                            Nom de la ville
+                                        </TextBlock>
+                                        <TextBlock FontSize="12"
+                                                   VerticalAlignment="Top"
+                                                   HorizontalAlignment="Left"
+                                                   TextAlignment="Center"
+                                                   Margin="0,50,50,0">
+                                            Latitude de la ville
+                                        </TextBlock>
+                                        <TextBlock FontSize="12"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Left"
+                                                   TextAlignment="Center"
+                                                   Margin="0,0,50,50">
+                                            Longitude de la ville
+                                        </TextBlock>
+                                    </Grid>
+                                    
+                                    
+                                    <RelativePanel Grid.Row="2">
+                                        <Rectangle Fill="Black"
+                                                   x:Name="Glass1"
+                                                   Opacity="0.3"
+                                                   RadiusX="10"
+                                                   RadiusY="10"
+                                                   Height="260"
+                                                   Width="750"
+                                                   RelativePanel.AlignLeftWithPanel="True"
+                                                   RelativePanel.AlignVerticalCenterWith="True"/>
+                                        
+                                        <TextBlock FontSize="50"
+                                                   Margin="20,0,0,0"
+                                                   RelativePanel.AlignTopWith="Glass1">
+                                            Température °C
+                                        </TextBlock>
+                                        <TextBlock FontSize="30"
+                                                   RelativePanel.AlignVerticalCenterWith="Glass1"
+                                                   Margin="20,0,0,30">
+                                             Courte description du temps
+                                        </TextBlock>
+                                                                            
+                                        <TextBlock FontSize="16"
+                                                   RelativePanel.AlignBottomWith="Glass1"
+                                                   Margin="20,0,0,20">
+                                            Humidité %
+                                        </TextBlock>
+                                        
+                                    </RelativePanel>
+                                    
                                 </Grid>
                                 
-                            </StackPanel>
-                        </TabItem>
-                        
-                        <!--Settings-->
-                        <TabItem HorizontalContentAlignment="Left" >
-                            <TabItem.Header>
-                                <PathIcon Data="{StaticResource settings_regular}"/>
-                            </TabItem.Header>
+                            </TabItem>
                             
-                            <WrapPanel Orientation="Vertical">
+                            <!--Forecast-->
+                            <TabItem>
+                                <TabItem.Header>
+                                    <PathIcon Data="{StaticResource calendar_month_regular}"/>
+                                </TabItem.Header>
                                 
-                                <TextBlock x:Name="TitleSettings" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,50" FontSize="30">
-                                    Settings
-                                </TextBlock>
+                                <Grid RowDefinitions="60,*">
+                                    
+                                    <Panel Grid.Row="0">
+                                        <AutoCompleteBox Height="30"
+                                                         Width="250"
+                                                         Margin="0,0,0,0"
+                                                         Watermark="Enter a location ..."
+                                                         HorizontalAlignment="Center"
+                                                         VerticalAlignment="Center"/>
+                                    </Panel>
+                                    
+                                    <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*" Margin="20">
+                                        
+                                        <StackPanel Grid.Column="0" Background="#03001C">
+                                            <TextBlock Text="prevision1"/>
+                                        </StackPanel>
+                                        
+                                        <StackPanel Grid.Column="1" Background="#03001C">
+                                            <TextBlock Text="prevision2"/>
+                                        </StackPanel>
+                                        
+                                        <StackPanel Grid.Column="2" Background="#03001C">
+                                            <TextBlock Text="prevision3"/>
+                                        </StackPanel>
+                                        
+                                        <StackPanel Grid.Column="3" Background="#03001C">
+                                            <TextBlock Text="prevision4"/>
+                                        </StackPanel>
+                                        
+                                        <StackPanel Grid.Column="4" Background="#03001C">
+                                            <TextBlock Text="prevision5"/>
+                                        </StackPanel>
+
+                                    </Grid>
+                                    
+                                </Grid>
                                 
-                                <TextBlock Classes="textSubSettings">
-                                    Languages
-                                </TextBlock>
-                                
-                                <ComboBox Classes="comboSettings"
-                                          AutoScrollToSelectedItem="True"
-                                          SelectedIndex="10"
-                                          MaxDropDownHeight="150">
-                                    <ComboBoxItem>Afrikaan</ComboBoxItem>        
-                                    <ComboBoxItem>Albanian</ComboBoxItem>
-                                    <ComboBoxItem>Arabic</ComboBoxItem>
-                                    <ComboBoxItem>Azerbaijani</ComboBoxItem>
-                                    <ComboBoxItem>Bulgarian</ComboBoxItem>
-                                    <ComboBoxItem>Catalan</ComboBoxItem>
-                                    <ComboBoxItem>Czech</ComboBoxItem>
-                                    <ComboBoxItem>Danish</ComboBoxItem>
-                                    <ComboBoxItem>German</ComboBoxItem>
-                                    <ComboBoxItem>Greek</ComboBoxItem>
-                                    <ComboBoxItem>English</ComboBoxItem>
-                                    <ComboBoxItem>Basque</ComboBoxItem>
-                                    <ComboBoxItem>Persian (Farsi)</ComboBoxItem>
-                                    <ComboBoxItem>Finnish</ComboBoxItem>
-                                    <ComboBoxItem>French</ComboBoxItem>
-                                    <ComboBoxItem>Galician</ComboBoxItem>
-                                    <ComboBoxItem>Hebrew</ComboBoxItem>
-                                    <ComboBoxItem>Hindi</ComboBoxItem>
-                                    <ComboBoxItem>Croatian</ComboBoxItem>
-                                    <ComboBoxItem>Hungarian</ComboBoxItem>
-                                    <ComboBoxItem>Indonesian</ComboBoxItem>
-                                    <ComboBoxItem>Italian</ComboBoxItem>
-                                    <ComboBoxItem>Japanese</ComboBoxItem>
-                                    <ComboBoxItem>Korean</ComboBoxItem>
-                                    <ComboBoxItem>Korean</ComboBoxItem>
-                                    <ComboBoxItem>Lithuanian</ComboBoxItem>
-                                    <ComboBoxItem>Macedonian</ComboBoxItem>
-                                    <ComboBoxItem>Norwegian</ComboBoxItem>
-                                    <ComboBoxItem>Dutch</ComboBoxItem>
-                                    <ComboBoxItem>Polish</ComboBoxItem>
-                                    <ComboBoxItem>Portuguese</ComboBoxItem>
-                                    <ComboBoxItem>Português Brasil</ComboBoxItem>
-                                    <ComboBoxItem>Romanian</ComboBoxItem>
-                                    <ComboBoxItem>Russian</ComboBoxItem>
-                                    <ComboBoxItem>Swedish</ComboBoxItem>
-                                    <ComboBoxItem>Slovak</ComboBoxItem>
-                                    <ComboBoxItem>Slovenian</ComboBoxItem>
-                                    <ComboBoxItem>Spanish</ComboBoxItem>
-                                    <ComboBoxItem>Serbian</ComboBoxItem>
-                                    <ComboBoxItem>Thai</ComboBoxItem>
-                                    <ComboBoxItem>Turkish</ComboBoxItem>
-                                    <ComboBoxItem>Ukrainian</ComboBoxItem>
-                                    <ComboBoxItem>Vietnamese</ComboBoxItem>
-                                    <ComboBoxItem>Chinese Simplified</ComboBoxItem>
-                                    <ComboBoxItem>Chinese Traditional</ComboBoxItem>
-                                    <ComboBoxItem>Zulu</ComboBoxItem>
-                                </ComboBox>
-                                
-                                <TextBlock Classes="textSubSettings">
-                                    Temperature
-                                </TextBlock>
-                                
-                                <ComboBox Classes="comboSettings"
-                                          SelectedIndex="0"
-                                          MaxDropDownHeight="100">
-                                    <ComboBoxItem>Celsius - °C</ComboBoxItem>
-                                    <ComboBoxItem>Fahrenheit - °F</ComboBoxItem>
-                                </ComboBox>
-                                
-                                <TextBlock Classes="textSubSettings" Margin="0,0,0,10">
-                                    Default Location
-                                </TextBlock>
-                                
-                                <AutoCompleteBox Watermark="Search Location" Width="300"/>
-                                
-                            </WrapPanel>
+                            </TabItem>
                             
-                        </TabItem>
-                    </TabControl>
+                            <!--Settings-->
+                            <TabItem HorizontalContentAlignment="Left" >
+                                <TabItem.Header>
+                                    <PathIcon Data="{StaticResource settings_regular}"/>
+                                </TabItem.Header>
+                                
+                                <Grid RowDefinitions="Auto,*" Margin="15">
+                                    <TextBlock Grid.Row="0" 
+                                               x:Name="TitleSettings"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Margin="0,30,0,50"
+                                               FontSize="30">
+                                        Settings
+                                    </TextBlock>
+                                    
+                                    <WrapPanel Grid.Row="1" Orientation="Vertical" >
+                                        <TextBlock Classes="textSubSettings">
+                                            Languages
+                                        </TextBlock>
+                                        
+                                        <ComboBox Classes="comboSettings"
+                                                  AutoScrollToSelectedItem="True"
+                                                  SelectedIndex="10"
+                                                  MaxDropDownHeight="150">
+                                            <ComboBoxItem>Afrikaan</ComboBoxItem>        
+                                            <ComboBoxItem>Albanian</ComboBoxItem>
+                                            <ComboBoxItem>Arabic</ComboBoxItem>
+                                            <ComboBoxItem>Azerbaijani</ComboBoxItem>
+                                            <ComboBoxItem>Bulgarian</ComboBoxItem>
+                                            <ComboBoxItem>Catalan</ComboBoxItem>
+                                            <ComboBoxItem>Czech</ComboBoxItem>
+                                            <ComboBoxItem>Danish</ComboBoxItem>
+                                            <ComboBoxItem>German</ComboBoxItem>
+                                            <ComboBoxItem>Greek</ComboBoxItem>
+                                            <ComboBoxItem>English</ComboBoxItem>
+                                            <ComboBoxItem>Basque</ComboBoxItem>
+                                            <ComboBoxItem>Persian (Farsi)</ComboBoxItem>
+                                            <ComboBoxItem>Finnish</ComboBoxItem>
+                                            <ComboBoxItem>French</ComboBoxItem>
+                                            <ComboBoxItem>Galician</ComboBoxItem>
+                                            <ComboBoxItem>Hebrew</ComboBoxItem>
+                                            <ComboBoxItem>Hindi</ComboBoxItem>
+                                            <ComboBoxItem>Croatian</ComboBoxItem>
+                                            <ComboBoxItem>Hungarian</ComboBoxItem>
+                                            <ComboBoxItem>Indonesian</ComboBoxItem>
+                                            <ComboBoxItem>Italian</ComboBoxItem>
+                                            <ComboBoxItem>Japanese</ComboBoxItem>
+                                            <ComboBoxItem>Korean</ComboBoxItem>
+                                            <ComboBoxItem>Korean</ComboBoxItem>
+                                            <ComboBoxItem>Lithuanian</ComboBoxItem>
+                                            <ComboBoxItem>Macedonian</ComboBoxItem>
+                                            <ComboBoxItem>Norwegian</ComboBoxItem>
+                                            <ComboBoxItem>Dutch</ComboBoxItem>
+                                            <ComboBoxItem>Polish</ComboBoxItem>
+                                            <ComboBoxItem>Portuguese</ComboBoxItem>
+                                            <ComboBoxItem>Português Brasil</ComboBoxItem>
+                                            <ComboBoxItem>Romanian</ComboBoxItem>
+                                            <ComboBoxItem>Russian</ComboBoxItem>
+                                            <ComboBoxItem>Swedish</ComboBoxItem>
+                                            <ComboBoxItem>Slovak</ComboBoxItem>
+                                            <ComboBoxItem>Slovenian</ComboBoxItem>
+                                            <ComboBoxItem>Spanish</ComboBoxItem>
+                                            <ComboBoxItem>Serbian</ComboBoxItem>
+                                            <ComboBoxItem>Thai</ComboBoxItem>
+                                            <ComboBoxItem>Turkish</ComboBoxItem>
+                                            <ComboBoxItem>Ukrainian</ComboBoxItem>
+                                            <ComboBoxItem>Vietnamese</ComboBoxItem>
+                                            <ComboBoxItem>Chinese Simplified</ComboBoxItem>
+                                            <ComboBoxItem>Chinese Traditional</ComboBoxItem>
+                                            <ComboBoxItem>Zulu</ComboBoxItem>
+                                            
+                                        </ComboBox>
+                                        <TextBlock Classes="textSubSettings">
+                                            Temperature
+                                        </TextBlock>
+                                        <ComboBox Classes="comboSettings"
+                                                  SelectedIndex="0"
+                                                  MaxDropDownHeight="100">
+                                            <ComboBoxItem>Celsius - °C</ComboBoxItem>
+                                            <ComboBoxItem>Fahrenheit - °F</ComboBoxItem>
+                                        </ComboBox>
+                                        
+                                        <TextBlock Classes="textSubSettings"
+                                                   Margin="0,0,0,10">
+                                            Default Location
+                                        </TextBlock>
+                                                                        
+                                        <AutoCompleteBox Watermark="Search Location" Width="300"/>
+                                                                        
+                                    </WrapPanel>
+                                </Grid>
+                                
+                            </TabItem>
+                            
+                        </TabControl>
+
+                    </Grid>              
                     
-                </StackPanel>
-                
-        </RelativePanel>
+                </Grid>
+
+        </Panel>
+        
 </Window>
