@@ -22,7 +22,7 @@ public partial class MainWindow : Window
 
     public async void GetWeather(string ville, string pays)
     {
-        var weather = await WeatherApi.GetWeatherForecast(ville, pays);
+        var weather = await WeatherApi.GetWeatherForecast(ville, Conversion.GetCountryCode(pays));
         if (weather != null)
         {
             var items = new ObservableCollection<string>() { };
