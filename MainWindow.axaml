@@ -212,7 +212,8 @@
                                            Margin="20,0,0,20">
                                     Humidité %
                                 </TextBlock>
-
+                                
+                                <Image x:Name="ImageBox" Source="Images/icon.png"/>
                             </RelativePanel>
 
                         </Grid>
