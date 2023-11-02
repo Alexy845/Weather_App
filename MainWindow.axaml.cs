@@ -157,8 +157,13 @@ public partial class MainWindow : Window
 
     private void SearchButtonPrev_Click(object? sender, RoutedEventArgs e)
     {
-        if (SearchBarPrev.Text != null && CountryBarPrev.Text != null)
+        if ((SearchBarPrev.Text is not null && CountryBarPrev.Text is not null) ||
+            (SearchBarPrev.Text.Length > 0 && CountryBarPrev.Text.Length > 0))
             GetWeatherFiveDays(SearchBarPrev.Text, CountryBarPrev.Text);
+        else
+        {
+            Console.WriteLine("error");
+        }
     }
 
     private async void GetWeatherFiveDays(string ville, string pays)
@@ -170,6 +175,10 @@ public partial class MainWindow : Window
             var name = weather.city.name;
 
             var fivesDays = new List<WeatherFiveDays.Weather5Days.Day>();
+            
+            NameBoxPrev.Text = name;
+            LatBoxPrev.Text = coord.lat.ToString(CultureInfo.CurrentCulture);
+            LonBoxPrev.Text = coord.lon.ToString(CultureInfo.CurrentCulture);
 
             foreach (var i in weather.list)
             {
@@ -178,9 +187,7 @@ public partial class MainWindow : Window
                     fivesDays.Add(i);
                 }
             }
-
-            Console.WriteLine(fivesDays.Count);
-
+            
             for (int i = 0; i < AllPanel.Count; i++)
             {
                 TextBlock date = new AccessText();
