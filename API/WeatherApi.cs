@@ -12,9 +12,6 @@ public class WeatherApi
     private readonly HttpClient _client;
     private const string ApiKey = "2a2922af3fb2b058c284c0fc51f3348e";
 
-    private const string BaseUrl =
-        "https://api.openweathermap.org/data/2.5/weather?q={city name},{country code}&appid=";
-
     public WeatherApi()
     {
         _client = new HttpClient();
@@ -28,7 +25,6 @@ public class WeatherApi
             HttpResponseMessage response =  await _client.GetAsync(requestUrl);
             response.EnsureSuccessStatusCode();
             var weather = JsonConvert.DeserializeObject<ApiClass>(await response.Content.ReadAsStringAsync());
-            Console.WriteLine($"{weather.name} : {weather.id} -> {weather.coord.lon} ; {weather.coord.lat}" );
             return weather;
         }
         catch(HttpRequestException e)

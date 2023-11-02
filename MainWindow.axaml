@@ -228,18 +228,66 @@
                             <PathIcon Data="{StaticResource calendar_month_regular}" />
                         </TabItem.Header>
 
-                        <Grid RowDefinitions="60,*">
+                        <Grid RowDefinitions="60,*,*">
 
                             <Panel Grid.Row="0">
-                                <AutoCompleteBox Height="30"
+                                <AutoCompleteBox x:Name="SearchBarPrev"
+                                    Height="30"
                                                  Width="250"
                                                  Margin="0,0,0,0"
                                                  Watermark="Enter a location ..."
                                                  HorizontalAlignment="Center"
                                                  VerticalAlignment="Center" />
-                            </Panel>
+                                <AutoCompleteBox x:Name="CountryBarPrev"
+                                                 Grid.Row="1"
+                                                 Height="30"
+                                                 Width="250"
+                                                 Margin="50,0,0,30"
+                                                 Watermark="Enter a country"
+                                                 HorizontalAlignment="Center"
+                                                 VerticalAlignment="Center" />
 
-                            <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*" Margin="20">
+                                <Button x:Name="SearchButtonPrev"
+                                        RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                        RelativePanel.AlignTopWithPanel="True"
+                                        Margin="10"
+                                        Content="Search"
+                                        Click="SearchButtonPrev_Click" />
+                            </Panel>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="NameBoxPrev"
+                                           FontSize="25"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,30,80,0"
+                                           Grid.Column="0">
+                                    Nom de la ville
+                                </TextBlock>
+                                <TextBlock x:Name="LatBoxPrev"
+                                           FontSize="12"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           TextAlignment="Center"
+                                           Margin="0,50,50,0"
+                                           Grid.Column="1">
+                                    Latitude de la ville
+                                </TextBlock>
+                                <TextBlock x:Name="LonBoxPrev"
+                                           FontSize="12"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           TextAlignment="Center"
+                                           Margin="0,0,50,50"
+                                           Grid.Column="2">
+                                    Longitude de la ville
+                                </TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*,*" Margin="20">
 
                                 <StackPanel Grid.Column="0" Background="#03001C">
                                     <TextBlock Text="prevision1" />
@@ -257,7 +305,7 @@
                                     <TextBlock Text="prevision4" />
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="4" Background="#03001C">
+                                <StackPanel Grid.Column="4" Background="#03001C" x:Name="TestPanel">
                                     <TextBlock Text="prevision5" />
                                 </StackPanel>
 
