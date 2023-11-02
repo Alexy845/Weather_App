@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Weather_App.Enum;
 
 namespace Weather_App;
 
@@ -18,7 +19,7 @@ public class WeatherFiveDays
     
     public async Task<Weather5Days> GetWeatherFiveDays(string name, string country)
     {
-        string requestUrl = $"https://api.openweathermap.org/data/2.5/forecast?q={name},{country}&appid={ApiKey}";
+        string requestUrl = $"https://api.openweathermap.org/data/2.5/forecast?q={name},{country}&lang={Lang.Lang.LangToCode(MainWindow.Country.ToString())}&appid={ApiKey}";
         try
         {
             HttpResponseMessage response =  await _client.GetAsync(requestUrl);

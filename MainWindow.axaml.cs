@@ -23,7 +23,8 @@ public partial class MainWindow : Window
     public string Path = "options.json";
 
     public List<StackPanel> AllPanel = new List<StackPanel>();
-    public UnitTemp UnitTemp;
+    public static UnitTemp UnitTemp;
+    public static Country Country;
 
     public MainWindow()
     {
@@ -61,6 +62,7 @@ public partial class MainWindow : Window
         TemperatureComboBox.SelectedIndex = Int32.Parse(jsonObj["TempUnit"].ToString());
         ChangeUnit(Int32.Parse(jsonObj["TempUnit"].ToString()));
         LanguageComboBox.SelectedIndex = Int32.Parse(jsonObj["Language"].ToString());
+        SetCountry.SetCountryEnum(LanguageComboBox.SelectedIndex);
         DefaultLocationTextBlock.Text = jsonObj["DefaultLocation"].ToString();
     }
 
@@ -96,6 +98,7 @@ public partial class MainWindow : Window
     {
         ComboBox comboBox = (ComboBox)sender;
         string selectedContent = comboBox.SelectedIndex.ToString();
+        SetCountry.SetCountryEnum(comboBox.SelectedIndex);
         string json = File.ReadAllText(Path);
         dynamic jsonObj = JsonConvert.DeserializeObject(json);
         jsonObj["Language"] = selectedContent;

@@ -232,7 +232,7 @@
 
                             <Panel Grid.Row="0">
                                 <AutoCompleteBox x:Name="SearchBarPrev"
-                                    Height="30"
+                                                 Height="30"
                                                  Width="250"
                                                  Margin="0,0,0,0"
                                                  Watermark="Enter a location ..."
@@ -316,7 +316,7 @@
                     </TabItem>
 
                     <!--Settings-->
-                    <TabItem HorizontalContentAlignment="Left">
+                    <TabItem HorizontalContentAlignment="Left" >
                         <TabItem.Header>
                             <PathIcon Data="{StaticResource settings_regular}" />
                         </TabItem.Header>
@@ -335,13 +335,13 @@
                                 <TextBlock Classes="textSubSettings">
                                     Languages
                                 </TextBlock>
-                                
+
                                 <ComboBox x:Name="LanguageComboBox"
                                           Classes="comboSettings"
                                           AutoScrollToSelectedItem="True"
                                           SelectionChanged="ChangeLanguage"
                                           MaxDropDownHeight="150">
-                                    <ComboBoxItem>Afrikaan</ComboBoxItem>        
+                                    <ComboBoxItem>Afrikaan</ComboBoxItem>
                                     <ComboBoxItem>Albanian</ComboBoxItem>
                                     <ComboBoxItem>Arabic</ComboBoxItem>
                                     <ComboBoxItem>Azerbaijani</ComboBoxItem>
@@ -364,7 +364,6 @@
                                     <ComboBoxItem>Indonesian</ComboBoxItem>
                                     <ComboBoxItem>Italian</ComboBoxItem>
                                     <ComboBoxItem>Japanese</ComboBoxItem>
-                                    <ComboBoxItem>Korean</ComboBoxItem>
                                     <ComboBoxItem>Korean</ComboBoxItem>
                                     <ComboBoxItem>Lithuanian</ComboBoxItem>
                                     <ComboBoxItem>Macedonian</ComboBoxItem>
@@ -391,26 +390,26 @@
                                 <TextBlock Classes="textSubSettings">
                                     Temperature
                                 </TextBlock>
-                                
+
                                 <ComboBox x:Name="TemperatureComboBox"
                                           Classes="comboSettings"
                                           MaxDropDownHeight="100"
-                                        SelectionChanged="ChangeTempUnit">
+                                          SelectionChanged="ChangeTempUnit">
                                     <ComboBoxItem>Celsius - °C</ComboBoxItem>
                                     <ComboBoxItem>Fahrenheit - °F</ComboBoxItem>
                                     <ComboBoxItem>Kelvin - °K</ComboBoxItem>
                                 </ComboBox>
-                                
+
                                 <TextBlock
                                     Classes="textSubSettings" Margin="0,0,0,10">
                                     Default Location
                                 </TextBlock>
-                                
+
                                 <AutoCompleteBox
                                     x:Name="DefaultLocationTextBlock"
                                     TextChanged="DefaultLocationTextBlock_OnTextChanged"
-                                    Watermark="Search Location" Width="300"/>
-                                
+                                    Watermark="Search Location" Width="300" />
+
                             </WrapPanel>
                         </Grid>
 

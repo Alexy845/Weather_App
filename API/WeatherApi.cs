@@ -19,15 +19,18 @@ public class WeatherApi
 
     public async Task<ApiClass> GetWeatherForecast(string name, string country)
     {
-        string requestUrl = $"https://api.openweathermap.org/data/2.5/weather?q={name},{country}&appid={ApiKey}";
+        string requestUrl =
+            $"https://api.openweathermap.org/data/2.5/weather?q={name},{country}&lang={Lang.Lang.LangToCode(MainWindow.Country.ToString())}&appid={ApiKey}";
+        Console.WriteLine(requestUrl);
+        Console.WriteLine(MainWindow.Country.ToString());
         try
         {
-            HttpResponseMessage response =  await _client.GetAsync(requestUrl);
+            HttpResponseMessage response = await _client.GetAsync(requestUrl);
             response.EnsureSuccessStatusCode();
             var weather = JsonConvert.DeserializeObject<ApiClass>(await response.Content.ReadAsStringAsync());
             return weather;
         }
-        catch(HttpRequestException e)
+        catch (HttpRequestException e)
         {
             Console.WriteLine($"Erreur : {e.Message}");
             return null;
@@ -86,7 +89,7 @@ public class ApiClass
     {
         public int all { get; set; }
     }
-    
+
     public Rain rain { get; set; }
 
     public class Rain
@@ -94,9 +97,9 @@ public class ApiClass
         public float _1h { get; set; }
         public float _3h { get; set; }
     }
-    
+
     public Snow snow { get; set; }
-    
+
     public class Snow
     {
         public float _1h { get; set; }
