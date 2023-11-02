@@ -50,7 +50,8 @@
     "zh_tw": "Chinese Traditional",
     "zu": "Zulu"
   },
-  "TempUnit": "0",
-  "Language": "22",
-  "DefaultLocation": "Bora"
+  "TempUnit": "1",
+  "Language": "7",
+  "DefaultLocation": "Bordeaux",
+  "DefaultCountry": "France"
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 using System.IO;
+using System.Threading;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
@@ -32,6 +33,7 @@ public partial class MainWindow : Window
         TemperatureComboBox.SelectedIndex = Int32.Parse(jsonObj["TempUnit"].ToString());
         LanguageComboBox.SelectedIndex = Int32.Parse(jsonObj["Language"].ToString());
         DefaultLocationTextBlock.Text = jsonObj["DefaultLocation"].ToString();
+        DefaultCountryTextBlock.Text = jsonObj["DefaultCountry"].ToString();
     }
 
     private void CreateJsonFile()
@@ -42,7 +44,8 @@ public partial class MainWindow : Window
             {
                 TempUnit = "0",
                 Language = "10",
-                DefaultLocation = "Bordeaux"
+                DefaultLocation = "Bordeaux",
+                DefaultCountry = "France"
             };
             string json = JsonConvert.SerializeObject(options, Formatting.Indented);
             File.WriteAllText(path, json);
@@ -72,13 +75,32 @@ public partial class MainWindow : Window
         File.WriteAllText(path, output);
     }
 
-    private void DefaultLocationTextBlock_OnTextChanged(object? sender, TextChangedEventArgs e)
+    private async void SaveButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        string json = File.ReadAllText(path);
-        dynamic jsonObj = JsonConvert.DeserializeObject(json);
-        jsonObj["DefaultLocation"] = DefaultLocationTextBlock.Text;
-        string output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
-        File.WriteAllText(path, output);
+        if (DefaultLocationTextBlock.Text == "" || DefaultCountryTextBlock.Text == "")
+        {
+            ErrorMessageBox.Text = "Error: Empty field";
+            DefaultLocationTextBlock.Text = "Bordeaux";
+            DefaultCountryTextBlock.Text = "France";
+            return;
+        }
+        if (await WeatherApi.GetWeatherForecast(DefaultLocationTextBlock.Text, DefaultCountryTextBlock.Text) == null)
+        {
+            ErrorMessageBox.Text = "Error: Location not found";
+            DefaultLocationTextBlock.Text = "Bordeaux";
+            DefaultCountryTextBlock.Text = "France";
+        }
+        else
+        {
+            Console.WriteLine("Found");
+            string json = File.ReadAllText(path);
+            dynamic jsonObj = JsonConvert.DeserializeObject(json);
+            jsonObj["DefaultLocation"] = DefaultLocationTextBlock.Text;
+            jsonObj["DefaultCountry"] = DefaultCountryTextBlock.Text;
+            string output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
+            File.WriteAllText(path, output);
+            ErrorMessageBox.Text = "Default Location saved";
+        }
     }
 
     private void SearchButton_Click(object? sender, RoutedEventArgs eventArgs)
@@ -141,6 +163,14 @@ public partial class MainWindow : Window
             if (File.Exists("Images/icon.png")){
                 ImageBox.Source = new Avalonia.Media.Imaging.Bitmap("Images/icon.png");
             }
+        }
+    }
+
+    public void OnTabChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (ErrorMessageBox is not null)
+        {
+            ErrorMessageBox.Text = "";
         }
     }
 }

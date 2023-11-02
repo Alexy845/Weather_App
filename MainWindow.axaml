@@ -121,12 +121,13 @@
                             Grid.ColumnSpan="2"
                             TabStripPlacement="Left"
                             Margin="-8,0,0,0"
-                            SelectedIndex="0">
+                            SelectedIndex="0"
+                            SelectionChanged="OnTabChanged">
 
                     <TabItem>
                         <!--Home/search-->
                         <TabItem.Header>
-                            <PathIcon Data="{StaticResource search_regular}" />
+                            <PathIcon Data="{StaticResource search_regular}"/>
                         </TabItem.Header>
 
                         <Grid RowDefinitions="60,180,*">
@@ -407,8 +408,23 @@
                                 
                                 <AutoCompleteBox
                                     x:Name="DefaultLocationTextBlock"
-                                    TextChanged="DefaultLocationTextBlock_OnTextChanged"
                                     Watermark="Search Location" Width="300"/>
+                                <AutoCompleteBox
+                                    x:Name="DefaultCountryTextBlock"
+                                    Watermark="Search Country" Width="300"/>
+                                
+                                <Button x:Name="SaveButton"
+                                        Content="Save Location"
+                                        Click="SaveButton_OnClick"
+                                        Margin="0,20,0,0"
+                                        Width="110"
+                                        Height="30"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"/>
+                                
+                                <TextBlock 
+                                    x:Name="ErrorMessageBox"
+                                    Classes="textSubSettings"/>
                                 
                             </WrapPanel>
                         </Grid>
