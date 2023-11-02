@@ -21,12 +21,17 @@ public class Conversion
         var region = regions.FirstOrDefault(r => r.EnglishName.Contains(countryName));
         return region != null ? region.TwoLetterISORegionName : "Country not found";
     }
-    
+
     public static void DownloadImageFromUrl(string imageUrl, string saveLocation)
     {
         using (WebClient webClient = new WebClient())
         {
             webClient.DownloadFile(imageUrl, saveLocation);
         }
+    }
+
+    public static string KelvinToFahrenheit(float mainTemp)
+    {
+        return Math.Floor(mainTemp * 9 / 5 - 459.67f).ToString(CultureInfo.CurrentCulture);
     }
 }
