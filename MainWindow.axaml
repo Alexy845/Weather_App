@@ -132,7 +132,7 @@
                         <Grid RowDefinitions="60,180,*">
 
                             <AutoCompleteBox x:Name="SearchBar"
-                                Grid.Row="0"
+                                             Grid.Row="0"
                                              Height="30"
                                              Width="250"
                                              Margin="0,0,0,0"
@@ -154,7 +154,7 @@
                                     Margin="10"
                                     Content="Search"
                                     Click="SearchButton_Click" />
-                            
+
                             <Grid Grid.Row="1">
                                 <TextBlock x:Name="NameBox"
                                            FontSize="25"
@@ -164,7 +164,7 @@
                                     Nom de la ville
                                 </TextBlock>
                                 <TextBlock x:Name="LatBox"
-                                    FontSize="12"
+                                           FontSize="12"
                                            VerticalAlignment="Top"
                                            HorizontalAlignment="Left"
                                            TextAlignment="Center"
@@ -212,8 +212,10 @@
                                            Margin="20,0,0,20">
                                     Humidité %
                                 </TextBlock>
-                                
-                                <Image x:Name="ImageBox" Source="Images/icon.png"/>
+
+                                <Image x:Name="ImageBox" Source="" Height="50" Width="50"
+                                       RelativePanel.AlignLeftWithPanel="True"
+                                       RelativePanel.AlignVerticalCenterWith="True" />
                             </RelativePanel>
 
                         </Grid>

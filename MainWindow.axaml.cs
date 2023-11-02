@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.IO;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
@@ -39,7 +40,10 @@ public partial class MainWindow : Window
             LonBox.Text = coord.lon.ToString(CultureInfo.CurrentCulture);
             HumBox.Text = $"{main.humidity}%"; 
             
-            // Conversion.DownloadImageFromUrl($"http://openweathermap.org/img/w/{weatherList[0].icon}.png");
+            Conversion.DownloadImageFromUrl($"http://openweathermap.org/img/w/{weatherList[0].icon}.png", "Images/icon.png");
+            if (File.Exists("Images/icon.png")){
+                ImageBox.Source = new Avalonia.Media.Imaging.Bitmap("Images/icon.png");
+            }
         }
     }
 }

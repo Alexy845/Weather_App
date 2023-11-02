@@ -22,15 +22,11 @@ public class Conversion
         return region != null ? region.TwoLetterISORegionName : "Country not found";
     }
     
-    public static string DownloadImageFromUrl(string imageUrl)
+    public static void DownloadImageFromUrl(string imageUrl, string saveLocation)
     {
-        string saveLocation = @"icon.png";
-
         using (WebClient webClient = new WebClient())
         {
             webClient.DownloadFile(imageUrl, saveLocation);
         }
-
-        return saveLocation;
     }
 }
