@@ -25,12 +25,16 @@ public partial class MainWindow : Window
     public List<StackPanel> AllPanel = new List<StackPanel>();
     public static UnitTemp UnitTemp;
     public static Country Country;
+    public static string DefaultLocation;
+    public static string DefaultCountry;
 
     public MainWindow()
     {
         InitializeComponent();
         CreateJsonFile();
         SetSettings();
+        GetWeather(DefaultLocation, DefaultCountry);
+        GetWeatherFiveDays(DefaultLocation, DefaultCountry);
         AllPanel.Add(PanelDay1);
         AllPanel.Add(PanelDay2);
         AllPanel.Add(PanelDay3);
@@ -65,6 +69,8 @@ public partial class MainWindow : Window
         SetCountry.SetCountryEnum(LanguageComboBox.SelectedIndex);
         DefaultLocationTextBlock.Text = jsonObj["DefaultLocation"].ToString();
         DefaultCountryTextBlock.Text = jsonObj["DefaultCountry"].ToString();
+        DefaultLocation = jsonObj["DefaultLocation"].ToString();
+        DefaultCountry = jsonObj["DefaultCountry"].ToString();
     }
 
     private void CreateJsonFile()
