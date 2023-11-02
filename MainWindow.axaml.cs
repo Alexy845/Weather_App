@@ -11,6 +11,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Newtonsoft.Json;
 using Weather_App.Enum;
+using static System.Console;
 
 namespace Weather_App;
 
@@ -75,7 +76,7 @@ public partial class MainWindow : Window
             };
             string json = JsonConvert.SerializeObject(options, Formatting.Indented);
             File.WriteAllText(Path, json);
-            Console.WriteLine("creating file");
+            WriteLine("creating file");
         }
     }
 
@@ -157,17 +158,15 @@ public partial class MainWindow : Window
 
     private void SearchButtonPrev_Click(object? sender, RoutedEventArgs e)
     {
-        if ((SearchBarPrev.Text is not null && CountryBarPrev.Text is not null) ||
-            (SearchBarPrev.Text.Length > 0 && CountryBarPrev.Text.Length > 0))
-            GetWeatherFiveDays(SearchBarPrev.Text, CountryBarPrev.Text);
-        else
+        if (SearchBarPrev.Text is not null || CountryBarPrev.Text is not null)
         {
-            Console.WriteLine("error");
+            GetWeatherFiveDays(SearchBarPrev.Text, CountryBarPrev.Text);
         }
     }
 
     private async void GetWeatherFiveDays(string ville, string pays)
     {
+        if (ville.Length == 0 || pays.Length == 0) return;
         var weather = await WeatherFiveDays.GetWeatherFiveDays(ville, Conversion.GetCountryCode(pays));
         if (weather != null)
         {
