@@ -29,4 +29,9 @@ public class Conversion
             webClient.DownloadFile(imageUrl, saveLocation);
         }
     }
+
+    public static string KelvinToFahrenheit(float mainTemp)
+    {
+        return Math.Floor(mainTemp * 9 / 5 - 459.67f).ToString(CultureInfo.CurrentCulture);
+    }
 }
