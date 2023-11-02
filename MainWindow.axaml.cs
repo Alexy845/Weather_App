@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
@@ -26,19 +27,17 @@ public partial class MainWindow : Window
         var weather = await WeatherApi.GetWeatherForecast(ville, Conversion.GetCountryCode(pays));
         if (weather != null)
         {
-            var items = new ObservableCollection<string>() { };
             var coord = weather.coord;
             var weatherList = weather.weather;
             var main = weather.main;
             var name = weather.name;
 
-            items.Add($"Name : {name}");
-            items.Add($"Temperature : {Conversion.KelvinToCelsius(main.temp)}°C");
-            items.Add($"Description du temps : {weatherList[0].description}");
-            items.Add($"Latitude : {coord.lat}");
-            items.Add($"Longitude : {coord.lon}");
-            items.Add($"Humidity : {main.humidity}%");
-            ResultsBox.ItemsSource = items;
+            NameBox.Text = ville;
+            TempBox.Text = $"{Conversion.KelvinToCelsius(main.temp)}°C";
+            DescBox.Text = weatherList[0].description;
+            LatBox.Text = coord.lat.ToString(CultureInfo.CurrentCulture);
+            LonBox.Text = coord.lon.ToString(CultureInfo.CurrentCulture);
+            HumBox.Text = $"{main.humidity}%"; 
             
             // Conversion.DownloadImageFromUrl($"http://openweathermap.org/img/w/{weatherList[0].icon}.png");
         }
