@@ -1,6 +1,4 @@
 {
-  "DefaultCity": "Paris",
-  "Language": "fr",
   "SupportedLanguages": {
     "af": "Afrikaans",
     "al": "Albanian",
@@ -51,5 +49,8 @@
     "zh_cn": "Chinese Simplified",
     "zh_tw": "Chinese Traditional",
     "zu": "Zulu"
-  }
+  },
+  "TempUnit": "0",
+  "Language": "22",
+  "DefaultLocation": "Bora"
 }
