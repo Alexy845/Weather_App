@@ -194,9 +194,10 @@
                                     Languages
                                 </TextBlock>
                                 
-                                <ComboBox Classes="comboSettings"
+                                <ComboBox x:Name="LanguageComboBox"
+                                          Classes="comboSettings"
                                           AutoScrollToSelectedItem="True"
-                                          SelectedIndex="10"
+                                          SelectionChanged="ChangeLanguage"
                                           MaxDropDownHeight="150">
                                     <ComboBoxItem>Afrikaan</ComboBoxItem>        
                                     <ComboBoxItem>Albanian</ComboBoxItem>
@@ -250,18 +251,23 @@
                                     Temperature
                                 </TextBlock>
                                 
-                                <ComboBox Classes="comboSettings"
-                                          SelectedIndex="0"
-                                          MaxDropDownHeight="100">
+                                <ComboBox x:Name="TemperatureComboBox"
+                                          Classes="comboSettings"
+                                          MaxDropDownHeight="100"
+                                        SelectionChanged="ChangeTempUnit">
                                     <ComboBoxItem>Celsius - °C</ComboBoxItem>
                                     <ComboBoxItem>Fahrenheit - °F</ComboBoxItem>
                                 </ComboBox>
                                 
-                                <TextBlock Classes="textSubSettings" Margin="0,0,0,10">
+                                <TextBlock
+                                    Classes="textSubSettings" Margin="0,0,0,10">
                                     Default Location
                                 </TextBlock>
                                 
-                                <AutoCompleteBox Watermark="Search Location" Width="300"/>
+                                <AutoCompleteBox
+                                    x:Name="DefaultLocationTextBlock"
+                                    TextChanged="DefaultLocationTextBlock_OnTextChanged"
+                                    Watermark="Search Location" Width="300"/>
                                 
                             </WrapPanel>
                             
