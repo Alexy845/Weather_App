@@ -8,3 +8,5 @@ obj
 /.idea
 /.idea/*
 /Folder.DotSettings.user
+/Folder.DotSettings
+options.json
