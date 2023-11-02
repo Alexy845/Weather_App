@@ -6,8 +6,11 @@ namespace Weather_App;
 
 public partial class App : Application
 {
+    public static AppSettings? Settings { get; private set; }
     public override void Initialize()
     {
+        const string optionsFilePath = "options.json";
+        Settings = AppSettings.Load(optionsFilePath);
         AvaloniaXamlLoader.Load(this);
     }
 
