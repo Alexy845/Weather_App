@@ -1,40 +1,41 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Weather_App.Enum;
 
 namespace Weather_App;
 
 public class WeatherFiveDays
 {
     private readonly HttpClient _client;
-    private const string ApiKey = "2a2922af3fb2b058c284c0fc51f3348e";
-    
+    private static readonly string? ApiKey = ConfigurationManager.AppSettings["ApiKey"];
+
     public WeatherFiveDays()
     {
         _client = new HttpClient();
     }
-    
+
     public async Task<Weather5Days> GetWeatherFiveDays(string name, string country)
     {
-        string requestUrl = $"https://api.openweathermap.org/data/2.5/forecast?q={name},{country}&lang={Lang.Lang.LangToCode(MainWindow.Country.ToString())}&appid={ApiKey}";
+        string requestUrl =
+            $"https://api.openweathermap.org/data/2.5/forecast?q={name},{country}&lang={Lang.Lang.LangToCode(MainWindow.Country.ToString())}&appid={ApiKey}";
         try
         {
-            HttpResponseMessage response =  await _client.GetAsync(requestUrl);
+            HttpResponseMessage response = await _client.GetAsync(requestUrl);
             response.EnsureSuccessStatusCode();
             var weather = JsonConvert.DeserializeObject<Weather5Days>(await response.Content.ReadAsStringAsync());
             return weather;
         }
-        catch(HttpRequestException e)
+        catch (HttpRequestException e)
         {
             Console.WriteLine($"Erreur : {e.Message}");
             return null;
         }
     }
-    
-    
+
+
     public class Weather5Days
     {
         public string cod { get; set; }
@@ -59,7 +60,7 @@ public class WeatherFiveDays
                 public int humidity { get; set; }
                 public float temp_kf { get; set; }
             }
-            
+
             public List<Weather> weather { get; set; }
 
             public class Weather
@@ -95,9 +96,9 @@ public class WeatherFiveDays
                 public float _1h { get; set; }
                 public float _3h { get; set; }
             }
-    
+
             public Snow snow { get; set; }
-    
+
             public class Snow
             {
                 public float _1h { get; set; }
@@ -113,7 +114,7 @@ public class WeatherFiveDays
 
             public string dt_txt { get; set; }
         }
-        
+
         public City city { get; set; }
 
         public class City

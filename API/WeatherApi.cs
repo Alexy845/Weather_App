@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Configuration;
 
 namespace Weather_App;
 
 public class WeatherApi
 {
     private readonly HttpClient _client;
-    private const string ApiKey = "2a2922af3fb2b058c284c0fc51f3348e";
+    private static readonly string? ApiKey = ConfigurationManager.AppSettings["ApiKey"];
 
     public WeatherApi()
     {

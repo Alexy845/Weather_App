@@ -1,12 +1,7 @@
 using System;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
-using System;
 using System.Collections.Generic;
-using System.Drawing.Printing;
-using System.IO;
 using System.Net.NetworkInformation;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
@@ -30,6 +25,7 @@ public partial class MainWindow : Window
     public static Country Country;
     public static string DefaultLocation;
     public static string DefaultCountry;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -42,10 +38,9 @@ public partial class MainWindow : Window
         AllPanel.Add(PanelDay3);
         AllPanel.Add(PanelDay4);
         AllPanel.Add(PanelDay5);
-        
     }
-    
-    
+
+
     private void ChangeUnit(int index)
     {
         if (index == 0)
@@ -129,6 +124,7 @@ public partial class MainWindow : Window
             Close();
             return;
         }
+
         Console.WriteLine("Ya internet");
         if (DefaultLocationTextBlock.Text == "" || DefaultCountryTextBlock.Text == "")
         {
@@ -137,6 +133,7 @@ public partial class MainWindow : Window
             DefaultCountryTextBlock.Text = "France";
             return;
         }
+
         if (await WeatherApi.GetWeatherForecast(DefaultLocationTextBlock.Text, DefaultCountryTextBlock.Text) == null)
         {
             ErrorMessageBox.Text = "Error: Location not found";
@@ -171,6 +168,7 @@ public partial class MainWindow : Window
             Close();
             return;
         }
+
         var weather = await WeatherApi.GetWeatherForecast(ville, Conversion.GetCountryCode(pays));
         if (weather != null)
         {
@@ -224,6 +222,7 @@ public partial class MainWindow : Window
             Close();
             return;
         }
+
         if (ville.Length == 0 || pays.Length == 0) return;
         var weather = await WeatherFiveDays.GetWeatherFiveDays(ville, Conversion.GetCountryCode(pays));
         if (weather != null)
@@ -232,7 +231,7 @@ public partial class MainWindow : Window
             var name = weather.city.name;
 
             var fivesDays = new List<WeatherFiveDays.Weather5Days.Day>();
-            
+
             NameBoxPrev.Text = name;
             LatBoxPrev.Text = coord.lat.ToString(CultureInfo.CurrentCulture);
             LonBoxPrev.Text = coord.lon.ToString(CultureInfo.CurrentCulture);
@@ -244,7 +243,7 @@ public partial class MainWindow : Window
                     fivesDays.Add(i);
                 }
             }
-            
+
             for (int i = 0; i < AllPanel.Count; i++)
             {
                 Grid grid = new Grid();
@@ -260,9 +259,10 @@ public partial class MainWindow : Window
                 {
                     grid.RowDefinitions.Add(new RowDefinition());
                 }
+
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
-                
+
                 rectangle.Fill = new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse("#03001C"));
                 rectangle.Width = 250;
                 rectangle.Height = 230;
@@ -286,7 +286,7 @@ public partial class MainWindow : Window
 
                 desc.Text = fivesDays[i].weather[0].description;
                 hum.Text = $"{fivesDays[i].main.humidity}%";
-                
+
                 Grid.SetRow(date, 0);
                 Grid.SetRow(temp, 1);
                 Grid.SetRow(desc, 2);
@@ -295,7 +295,7 @@ public partial class MainWindow : Window
                 Grid.SetColumn(temp, 0);
                 Grid.SetColumn(desc, 0);
                 Grid.SetColumn(hum, 0);
-                
+
                 AllPanel[i].Children.Clear();
                 AllPanel[i].Children.Add(rectangle);
                 grid.Children.Add(date);
