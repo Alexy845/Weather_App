@@ -22,8 +22,8 @@ public partial class MainWindow : Window
 
     public string Path = "options.json";
 
-    public List<StackPanel> AllPanel = new List<StackPanel>();
-    public static UnitTemp UnitTemp;
+    public List<Panel> AllPanel = new List<Panel>();
+    public UnitTemp UnitTemp;
     public static Country Country;
     public static string DefaultLocation;
     public static string DefaultCountry;

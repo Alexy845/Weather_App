@@ -2,7 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="700"
         MinHeight="520"
         MinWidth="490"
         Background="Black"
@@ -55,12 +55,13 @@
         <Style Selector="ComboBoxItem">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Width" Value="150" />
+            <Setter Property="Opacity" Value="0.7"/>
         </Style>
 
         <!--SearchBar_Style-->
         <Style Selector="AutoCompleteBox">
             <Setter Property="Background" Value="#03001C" />
-            <Setter Property="Opacity" Value="0.8" />
+            <Setter Property="Opacity" Value="0.7" />
             <Setter Property="BorderThickness" Value="0.2" />
             <Setter Property="BorderBrush" Value="#EDEDED" />
             <Setter Property="CornerRadius" Value="1" />
@@ -80,7 +81,7 @@
                     BackgroundSource="Digger"
                     TintColor="#03001C"
                     TintOpacity="1"
-                    MaterialOpacity="0.9" />
+                    MaterialOpacity="0.7" />
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
 
@@ -111,16 +112,15 @@
                         BorderThickness="0,0.5,0,0"
                         Opacity="0.4"
                         BorderBrush="#EDEDED"
-                        Width="8000"
+                        Width="3000"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Margin="0,0,0,0" />
+                        VerticalAlignment="Top"/>
 
                 <!--Onglets-->
                 <TabControl Grid.Column="0"
                             Grid.ColumnSpan="2"
                             TabStripPlacement="Left"
-                            Margin="-8,0,0,0"
+                            Margin="-4,0,0,0"
                             SelectedIndex="0"
                             SelectionChanged="OnTabChanged">
 
@@ -130,93 +130,122 @@
                             <PathIcon Data="{StaticResource search_regular}"/>
                         </TabItem.Header>
 
-                        <Grid RowDefinitions="60,180,*">
+                        <Grid RowDefinitions="60,*" ColumnDefinitions="*,*">
+                            
+                            <Grid Grid.Column="0" ColumnSpan="2" Grid.Row="0"
+                                  ColumnDefinitions="Auto,Auto,Auto"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center">
+                                <AutoCompleteBox Grid.Column="0" x:Name="SearchBar"
+                                                 Height="30"
+                                                 Width="250"
+                                                 Watermark="Enter a location ..."
+                                                 HorizontalAlignment="Right"
+                                                 VerticalAlignment="Center"
+                                                 Margin="5"/>
+                                <AutoCompleteBox Grid.Column="1" x:Name="CountryBar"
+                                                 Height="30"
+                                                 Width="250"
+                                                 Watermark="Enter a country ..."
+                                                 HorizontalAlignment="Center"
+                                                 VerticalAlignment="Center"
+                                                 Margin="5"/>
 
-                            <AutoCompleteBox x:Name="SearchBar"
-                                             Grid.Row="0"
-                                             Height="30"
-                                             Width="250"
-                                             Margin="0,0,0,0"
-                                             Watermark="Enter a location ..."
-                                             HorizontalAlignment="Center"
-                                             VerticalAlignment="Center" />
-                            <AutoCompleteBox x:Name="CountryBar"
-                                             Grid.Row="1"
-                                             Height="30"
-                                             Width="250"
-                                             Margin="50,0,0,30"
-                                             Watermark="Enter a country"
-                                             HorizontalAlignment="Center"
-                                             VerticalAlignment="Center" />
+                                <Button Grid.Column="2"
+                                        x:Name="SearchButton"
+                                        Content="Search"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        Margin="5"/>
+                            </Grid>
 
-                            <Button x:Name="SearchButton"
-                                    RelativePanel.AlignHorizontalCenterWithPanel="True"
-                                    RelativePanel.AlignTopWithPanel="True"
-                                    Margin="10"
-                                    Content="Search"
-                                    Click="SearchButton_Click" />
-
-                            <Grid Grid.Row="1">
+                            <Grid Grid.Column="1" Grid.Row="1"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Top"
+                                  Margin="0,80">
+                                
                                 <TextBlock x:Name="NameBox"
                                            FontSize="25"
                                            VerticalAlignment="Top"
                                            HorizontalAlignment="Right"
-                                           Margin="0,30,80,0">
-                                    Nom de la ville
+                                           Margin="0,0,0,150"
+                                           Grid.Column="0">
+                                    Name of the city
                                 </TextBlock>
+                                
                                 <TextBlock x:Name="LatBox"
                                            FontSize="12"
-                                           VerticalAlignment="Top"
+                                           VerticalAlignment="Center"
                                            HorizontalAlignment="Left"
-                                           TextAlignment="Center"
-                                           Margin="0,50,50,0">
-                                    Latitude de la ville
+                                           TextAlignment="Left"
+                                           Margin="0,20,190,0"
+                                           Grid.Column="0">
+                                    Latitude of the city
                                 </TextBlock>
                                 <TextBlock x:Name="LonBox"
                                            FontSize="12"
                                            VerticalAlignment="Bottom"
                                            HorizontalAlignment="Left"
-                                           TextAlignment="Center"
-                                           Margin="0,0,50,50">
-                                    Longitude de la ville
+                                           TextAlignment="Left"
+                                           Margin="0,0,0,40"
+                                           Grid.Column="0">
+                                    Longitude of the city
                                 </TextBlock>
                             </Grid>
 
 
-                            <RelativePanel Grid.Row="2">
-                                <Rectangle Fill="Black"
+                            <RelativePanel Grid.Column="0"
+                                           Grid.Row="1"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Top"
+                                           Margin="0,50,0,0">
+                                <Rectangle Fill="#03001C"
                                            x:Name="Glass1"
                                            Opacity="0.3"
                                            RadiusX="10"
                                            RadiusY="10"
-                                           Height="260"
-                                           Width="750"
-                                           RelativePanel.AlignLeftWithPanel="True"
-                                           RelativePanel.AlignVerticalCenterWith="True" />
+                                           Height="550"
+                                           Width="420"/>
 
                                 <TextBlock x:Name="TempBox"
                                            FontSize="50"
-                                           Margin="20,0,0,0"
+                                           Margin="30,30,0,0"
                                            RelativePanel.AlignTopWith="Glass1">
-                                    Température °C
+                                    Temp °C
                                 </TextBlock>
+                                
+                                <Image x:Name="ImageBox" Source="" Height="50" Width="50"
+                                       RelativePanel.Below="TempBox"
+                                       RelativePanel.AlignVerticalCenterWith="True"/>
+                                
+                                <Border x:Name="MiddleGlass"
+                                        BorderThickness="0,0.5,0,0"
+                                        Opacity="0.4"
+                                        BorderBrush="#EDEDED"
+                                        Width="420"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        RelativePanel.AlignVerticalCenterWith="Glass1"
+                                        Margin="0,50,0,0"/>
+                                
                                 <TextBlock x:Name="DescBox"
                                            FontSize="30"
-                                           RelativePanel.AlignVerticalCenterWith="Glass1"
-                                           Margin="20,0,0,30">
-                                    Courte description du temps
+                                           RelativePanel.Below="MiddleGlass"
+                                           RelativePanel.AlignLeftWithPanel="True"
+                                           TextAlignment="Start"
+                                           Margin="30,50,0,0">
+                                    description
                                 </TextBlock>
 
                                 <TextBlock x:Name="HumBox"
                                            FontSize="16"
-                                           RelativePanel.AlignBottomWith="Glass1"
-                                           Margin="20,0,0,20">
-                                    Humidité %
+                                           RelativePanel.Below="DescBox"
+                                           RelativePanel.AlignLeftWithPanel="True"
+                                           TextAlignment="Start"
+                                           Margin="30,50,0,0">
+                                    Humidity %
                                 </TextBlock>
 
-                                <Image x:Name="ImageBox" Source="" Height="50" Width="50"
-                                       RelativePanel.AlignLeftWithPanel="True"
-                                       RelativePanel.AlignVerticalCenterWith="True" />
                             </RelativePanel>
 
                         </Grid>
@@ -231,93 +260,134 @@
 
                         <Grid RowDefinitions="60,*,*">
 
-                            <Panel Grid.Row="0">
-                                <AutoCompleteBox x:Name="SearchBarPrev"
+                            <Grid Grid.Row="0"
+                                  ColumnDefinitions="Auto,Auto,Auto"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center">
+                                <AutoCompleteBox Grid.Column="0" x:Name="SearchBarPrev"
                                                  Height="30"
                                                  Width="250"
-                                                 Margin="0,0,0,0"
                                                  Watermark="Enter a location ..."
-                                                 HorizontalAlignment="Center"
-                                                 VerticalAlignment="Center" />
-                                <AutoCompleteBox x:Name="CountryBarPrev"
-                                                 Grid.Row="1"
+                                                 HorizontalAlignment="Right"
+                                                 VerticalAlignment="Center"
+                                                 Margin="5"/>
+                                <AutoCompleteBox Grid.Column="1" x:Name="CountryBarPrev"
                                                  Height="30"
                                                  Width="250"
-                                                 Margin="50,0,0,30"
-                                                 Watermark="Enter a country"
+                                                 Watermark="Enter a country ..."
                                                  HorizontalAlignment="Center"
-                                                 VerticalAlignment="Center" />
+                                                 VerticalAlignment="Center"
+                                                 Margin="5"/>
 
-                                <Button x:Name="SearchButtonPrev"
-                                        RelativePanel.AlignHorizontalCenterWithPanel="True"
-                                        RelativePanel.AlignTopWithPanel="True"
-                                        Margin="10"
+                                <Button Grid.Column="2"
+                                        x:Name="SearchButtonPrev"
                                         Content="Search"
-                                        Click="SearchButtonPrev_Click" />
-                            </Panel>
-                            <Grid Grid.Row="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        Margin="5"/>
+                            </Grid>
+                            
+                            <Grid Grid.Row="1"
+                                  ColumnDefinitions="Auto"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  Margin="80,0">
                                 <TextBlock x:Name="NameBoxPrev"
                                            FontSize="25"
                                            VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           Margin="0,30,80,0"
+                                           HorizontalAlignment="Right"
+                                           Margin="0,0,0,150"
                                            Grid.Column="0">
-                                    Nom de la ville
+                                    Name of the city
                                 </TextBlock>
                                 <TextBlock x:Name="LatBoxPrev"
                                            FontSize="12"
                                            VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           TextAlignment="Center"
-                                           Margin="0,50,50,0"
-                                           Grid.Column="1">
-                                    Latitude de la ville
+                                           HorizontalAlignment="Left"
+                                           TextAlignment="Left"
+                                           Margin="0,20,190,0"
+                                           Grid.Column="0">
+                                    Latitude of the city
                                 </TextBlock>
                                 <TextBlock x:Name="LonBoxPrev"
                                            FontSize="12"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           TextAlignment="Center"
-                                           Margin="0,0,50,50"
-                                           Grid.Column="2">
-                                    Longitude de la ville
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Left"
+                                           TextAlignment="Left"
+                                           Margin="0,0,0,40"
+                                           Grid.Column="0">
+                                    Longitude of the city
                                 </TextBlock>
                             </Grid>
-                            <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*,*" Margin="20">
+                            
+                            <ScrollViewer Grid.Row="2"
+                                          HorizontalScrollBarVisibility="Auto"
+                                          VerticalAlignment="Top"
+                                          HorizontalAlignment="Center">
+                                
+                                <WrapPanel>
 
-                                <StackPanel Grid.Column="0" Background="#03001C" x:Name="PanelDay1">
-                                    <TextBlock Text="prevision1" />
-                                </StackPanel>
+                                    <Panel x:Name="PanelDay1" Margin="10,0">
+                                        <Rectangle Fill="#03001C"
+                                                   Height="230"
+                                                   Width="250"
+                                                   RadiusX="10"
+                                                   RadiusY="10"
+                                                   Opacity="0.3"/>
+                                        <TextBlock Text="forecast1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Panel>
 
-                                <StackPanel Grid.Column="1" Background="#03001C" x:Name="PanelDay2">
-                                    <TextBlock Text="prevision2" />
-                                </StackPanel>
+                                    <Panel x:Name="PanelDay2" Margin="10,0">
+                                        <Rectangle Fill="#03001C"
+                                                   Height="230"
+                                                   Width="250"
+                                                   RadiusX="10"
+                                                   RadiusY="10"
+                                                   Opacity="0.3"/>
+                                        <TextBlock Text="forecast2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Panel>
 
-                                <StackPanel Grid.Column="2" Background="#03001C" x:Name="PanelDay3">
-                                    <TextBlock Text="prevision3" />
-                                </StackPanel>
+                                    <Panel x:Name="PanelDay3" Margin="10,0">
+                                        <Rectangle Fill="#03001C"
+                                                   Height="230"
+                                                   Width="250"
+                                                   RadiusX="10"
+                                                   RadiusY="10"
+                                                   Opacity="0.3"/>
+                                        <TextBlock Text="forecast3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Panel>
 
-                                <StackPanel Grid.Column="3" Background="#03001C" x:Name="PanelDay4">
-                                    <TextBlock Text="prevision4" />
-                                </StackPanel>
+                                    <Panel x:Name="PanelDay4" Margin="10,0">
+                                        <Rectangle Fill="#03001C"
+                                                   Height="230"
+                                                   Width="250"
+                                                   RadiusX="10"
+                                                   RadiusY="10"
+                                                   Opacity="0.3"/>
+                                        <TextBlock Text="forecast4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Panel>
 
-                                <StackPanel Grid.Column="4" Background="#03001C" x:Name="PanelDay5">
-                                    <TextBlock Text="prevision5" />
-                                </StackPanel>
+                                    <Panel x:Name="PanelDay5" Margin="10,0">
+                                        <Rectangle Fill="#03001C"
+                                                   Height="230"
+                                                   Width="250"
+                                                   RadiusX="10"
+                                                   RadiusY="10"
+                                                   Opacity="0.3"/>
+                                        <TextBlock Text="forecast5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Panel>
 
-                            </Grid>
-
+                                </WrapPanel>
+                                
+                            </ScrollViewer>
+                            
                         </Grid>
 
                     </TabItem>
 
+                    
                     <!--Settings-->
-                    <TabItem HorizontalContentAlignment="Left" >
+                    <TabItem HorizontalContentAlignment="Left">
                         <TabItem.Header>
                             <PathIcon Data="{StaticResource settings_regular}" />
                         </TabItem.Header>
@@ -395,7 +465,7 @@
                                 <ComboBox x:Name="TemperatureComboBox"
                                           Classes="comboSettings"
                                           MaxDropDownHeight="100"
-                                          SelectionChanged="ChangeTempUnit">
+                                        SelectionChanged="ChangeTempUnit">
                                     <ComboBoxItem>Celsius - °C</ComboBoxItem>
                                     <ComboBoxItem>Fahrenheit - °F</ComboBoxItem>
                                     <ComboBoxItem>Kelvin - °K</ComboBoxItem>
@@ -411,7 +481,7 @@
                                     Watermark="Search Location" Width="300"/>
                                 <AutoCompleteBox
                                     x:Name="DefaultCountryTextBlock"
-                                    Watermark="Search Country" Width="300"/>
+                                    Watermark="Search Country" Width="300" Margin="0,4,0,0"/>
                                 
                                 <Button x:Name="SaveButton"
                                         Content="Save Location"
