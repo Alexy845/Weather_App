@@ -161,7 +161,8 @@
                                         Content="Search"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
-                                        Margin="5"/>
+                                        Margin="5"
+                                        Opacity="0.7"/>
                             </Grid>
 
                             <Grid Grid.Column="1" Grid.Row="1"
@@ -207,7 +208,7 @@
                                 
                                 <Rectangle Fill="#03001C"
                                            x:Name="Glass1"
-                                           Opacity="0.4"
+                                           Opacity="0.3"
                                            RadiusX="10"
                                            RadiusY="10"
                                            Height="550"
@@ -298,7 +299,8 @@
                                         Content="Search"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
-                                        Margin="5"/>
+                                        Margin="5"
+                                        Opacity="0.7"/>
                             </Grid>
                             
                             <Grid Grid.Row="1"
@@ -509,7 +511,8 @@
                                         Width="110"
                                         Height="30"
                                         HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"/>
+                                        VerticalAlignment="Top"
+                                        Opacity="0.7"/>
                                 
                                 <TextBlock 
                                     x:Name="ErrorMessageBox"
