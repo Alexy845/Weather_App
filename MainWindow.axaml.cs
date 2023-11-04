@@ -5,7 +5,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.IO;
+using System.Net.NetworkInformation;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
@@ -28,7 +30,6 @@ public partial class MainWindow : Window
     public static Country Country;
     public static string DefaultLocation;
     public static string DefaultCountry;
-
     public MainWindow()
     {
         InitializeComponent();
@@ -41,6 +42,7 @@ public partial class MainWindow : Window
         AllPanel.Add(PanelDay3);
         AllPanel.Add(PanelDay4);
         AllPanel.Add(PanelDay5);
+        
     }
     
     
@@ -117,6 +119,17 @@ public partial class MainWindow : Window
 
     private async void SaveButton_OnClick(object? sender, RoutedEventArgs e)
     {
+        if (!NetworkInterface.GetIsNetworkAvailable())
+        {
+            WriteLine("pas internet");
+            NoInternet noInternet = new NoInternet();
+            WriteLine("pas internet2");
+            noInternet.Show();
+            WriteLine("pas internet3");
+            Close();
+            return;
+        }
+        Console.WriteLine("Ya internet");
         if (DefaultLocationTextBlock.Text == "" || DefaultCountryTextBlock.Text == "")
         {
             ErrorMessageBox.Text = "Error: Empty field";
@@ -151,6 +164,13 @@ public partial class MainWindow : Window
 
     public async void GetWeather(string ville, string pays)
     {
+        if (!NetworkInterface.GetIsNetworkAvailable())
+        {
+            NoInternet noInternet = new NoInternet();
+            noInternet.Show();
+            Close();
+            return;
+        }
         var weather = await WeatherApi.GetWeatherForecast(ville, Conversion.GetCountryCode(pays));
         if (weather != null)
         {
@@ -197,6 +217,13 @@ public partial class MainWindow : Window
 
     private async void GetWeatherFiveDays(string ville, string pays)
     {
+        if (!NetworkInterface.GetIsNetworkAvailable())
+        {
+            NoInternet noInternet = new NoInternet();
+            noInternet.Show();
+            Close();
+            return;
+        }
         if (ville.Length == 0 || pays.Length == 0) return;
         var weather = await WeatherFiveDays.GetWeatherFiveDays(ville, Conversion.GetCountryCode(pays));
         if (weather != null)

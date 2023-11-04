@@ -156,7 +156,8 @@
                                         Content="Search"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
-                                        Margin="5"/>
+                                        Margin="5"
+                                        Click="SearchButton_Click"/>
                             </Grid>
 
                             <Grid Grid.Column="1" Grid.Row="1"
@@ -284,7 +285,8 @@
                                         Content="Search"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
-                                        Margin="5"/>
+                                        Margin="5"
+                                        Click="SearchButtonPrev_Click"/>
                             </Grid>
                             
                             <Grid Grid.Row="1"
