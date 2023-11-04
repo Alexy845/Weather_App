@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
+using Avalonia.Media;
 using Newtonsoft.Json;
 using Weather_App.Enum;
 using static System.Console;
@@ -174,8 +177,8 @@ public partial class MainWindow : Window
             }
 
             DescBox.Text = weatherList[0].description;
-            LatBox.Text = coord.lat.ToString(CultureInfo.CurrentCulture);
-            LonBox.Text = coord.lon.ToString(CultureInfo.CurrentCulture);
+            LatBox.Text = $"Latitude: {coord.lat.ToString(CultureInfo.CurrentCulture)}";
+            LonBox.Text = $"Longitude: {coord.lon.ToString(CultureInfo.CurrentCulture)}";
             HumBox.Text = $"{main.humidity}%";
 
             Conversion.DownloadImageFromUrl($"http://openweathermap.org/img/w/{weatherList[0].icon}.png",
@@ -207,9 +210,9 @@ public partial class MainWindow : Window
             var fivesDays = new List<WeatherFiveDays.Weather5Days.Day>();
             
             NameBoxPrev.Text = name;
-            LatBoxPrev.Text = coord.lat.ToString(CultureInfo.CurrentCulture);
-            LonBoxPrev.Text = coord.lon.ToString(CultureInfo.CurrentCulture);
-
+            LatBoxPrev.Text = $"Latitude: {coord.lat.ToString(CultureInfo.CurrentCulture)}";
+            LonBoxPrev.Text = $"Longitude: {coord.lon.ToString(CultureInfo.CurrentCulture)}";
+            
             foreach (var i in weather.list)
             {
                 if (i.dt_txt.Contains("12:00:00"))
@@ -227,6 +230,7 @@ public partial class MainWindow : Window
                 TextBlock desc = new TextBlock();
                 TextBlock hum = new TextBlock();
                 Image image = new Image();
+                Image imgHum = new Image();
 
 
                 for (int j = 0; j < 4; j++)
@@ -259,6 +263,26 @@ public partial class MainWindow : Window
 
                 desc.Text = fivesDays[i].weather[0].description;
                 hum.Text = $"{fivesDays[i].main.humidity}%";
+
+                date.Margin = new Thickness(60, 20, 0, 0);
+                temp.Margin = new Thickness(20, 40, 0, 0);
+                temp.FontSize = 30;
+                desc.Margin = new Thickness(20, 20, 0, 0);
+                hum.Margin = new Thickness(34,10,0,0);
+                image.Margin = new Thickness(-80, 0, 0, 0);
+                imgHum.Margin = new Thickness(-150, 8.5, 0, 0);
+
+                if (File.Exists("Images/Humidity.png"))
+                {
+                    imgHum.Source = new Avalonia.Media.Imaging.Bitmap("Images/Humidity.png");
+                    imgHum.Width = 20;
+                    imgHum.Height = 20;
+                    imgHum.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center;
+                    imgHum.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Top;
+                    grid.Children.Add(imgHum);
+                    Grid.SetRow(imgHum, 3);
+                    Grid.SetColumn(imgHum, 0);
+                }
                 
                 Grid.SetRow(date, 0);
                 Grid.SetRow(temp, 1);

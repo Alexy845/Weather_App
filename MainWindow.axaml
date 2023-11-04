@@ -3,9 +3,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="700"
-        MinHeight="520"
-        MinWidth="490"
-        Background="Black"
+        MinHeight="570"
+        MinWidth="670"
         Opacity="0.8"
         BorderBrush="Transparent"
         WindowStartupLocation="CenterScreen"
@@ -14,6 +13,7 @@
         ExtendClientAreaChromeHints="PreferSystemChrome"
         x:Class="Weather_App.MainWindow"
         Title="Weather_App">
+    
 
     <!-- BleuNoir : #03001C -->
     <!-- Blanco : #EDEDED -->
@@ -42,7 +42,7 @@
         <Style Selector="ComboBox">
             <Setter Property="Background" Value="#03001C" />
             <Setter Property="Foreground" Value="#EDEDED" />
-            <Setter Property="Opacity" Value="2" />
+            <Setter Property="Opacity" Value="1.8" />
             <Setter Property="BorderThickness" Value="0.2" />
         </Style>
 
@@ -61,7 +61,7 @@
         <!--SearchBar_Style-->
         <Style Selector="AutoCompleteBox">
             <Setter Property="Background" Value="#03001C" />
-            <Setter Property="Opacity" Value="0.7" />
+            <Setter Property="Opacity" Value="0.5" />
             <Setter Property="BorderThickness" Value="0.2" />
             <Setter Property="BorderBrush" Value="#EDEDED" />
             <Setter Property="CornerRadius" Value="1" />
@@ -81,11 +81,10 @@
                     BackgroundSource="Digger"
                     TintColor="#03001C"
                     TintOpacity="1"
-                    MaterialOpacity="0.7" />
+                    MaterialOpacity="0.6" />
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
-
-
+        
         <Grid RowDefinitions="35,*">
 
             <!--Logo-->
@@ -162,12 +161,12 @@
                             <Grid Grid.Column="1" Grid.Row="1"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Top"
-                                  Margin="0,80">
+                                  Margin="20,80">
                                 
                                 <TextBlock x:Name="NameBox"
-                                           FontSize="25"
+                                           FontSize="50"
                                            VerticalAlignment="Top"
-                                           HorizontalAlignment="Right"
+                                           HorizontalAlignment="Center"
                                            Margin="0,0,0,150"
                                            Grid.Column="0">
                                     Name of the city
@@ -176,18 +175,18 @@
                                 <TextBlock x:Name="LatBox"
                                            FontSize="12"
                                            VerticalAlignment="Center"
-                                           HorizontalAlignment="Left"
+                                           HorizontalAlignment="Right"
                                            TextAlignment="Left"
-                                           Margin="0,20,190,0"
+                                           Margin="0,30,0,0"
                                            Grid.Column="0">
                                     Latitude of the city
                                 </TextBlock>
                                 <TextBlock x:Name="LonBox"
                                            FontSize="12"
                                            VerticalAlignment="Bottom"
-                                           HorizontalAlignment="Left"
+                                           HorizontalAlignment="Right"
                                            TextAlignment="Left"
-                                           Margin="0,0,0,40"
+                                           Margin="0,0,0,60"
                                            Grid.Column="0">
                                     Longitude of the city
                                 </TextBlock>
@@ -199,6 +198,7 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Top"
                                            Margin="0,50,0,0">
+                                
                                 <Rectangle Fill="#03001C"
                                            x:Name="Glass1"
                                            Opacity="0.3"
@@ -208,25 +208,27 @@
                                            Width="420"/>
 
                                 <TextBlock x:Name="TempBox"
-                                           FontSize="50"
-                                           Margin="30,30,0,0"
-                                           RelativePanel.AlignTopWith="Glass1">
+                                           FontSize="75"
+                                           Margin="0,0,75,-40"
+                                           RelativePanel.Below="ImageBox"
+                                           RelativePanel.Above="MiddleGlass"
+                                           RelativePanel.AlignRightWithPanel="True">
                                     Temp °C
                                 </TextBlock>
                                 
-                                <Image x:Name="ImageBox" Source="" Height="50" Width="50"
-                                       RelativePanel.Below="TempBox"
-                                       RelativePanel.AlignVerticalCenterWith="True"/>
+                                <Image x:Name="ImageBox" Source="" Height="190" Width="170"
+                                       RelativePanel.AlignTopWith="Glass1"
+                                       Margin="15,0,0,0"/>
                                 
                                 <Border x:Name="MiddleGlass"
                                         BorderThickness="0,0.5,0,0"
-                                        Opacity="0.4"
+                                        Opacity="0.2"
                                         BorderBrush="#EDEDED"
                                         Width="420"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         RelativePanel.AlignVerticalCenterWith="Glass1"
-                                        Margin="0,50,0,0"/>
+                                        Margin="0,70,0,0"/>
                                 
                                 <TextBlock x:Name="DescBox"
                                            FontSize="30"
@@ -242,9 +244,15 @@
                                            RelativePanel.Below="DescBox"
                                            RelativePanel.AlignLeftWithPanel="True"
                                            TextAlignment="Start"
-                                           Margin="30,50,0,0">
+                                           Margin="52,50,0,0">
                                     Humidity %
                                 </TextBlock>
+                                
+                                <Image x:Name="HumidityIcon" Source="Images/Humidity.png" Height="20" Width="20"
+                                       RelativePanel.AlignLeftWith="HumBox"
+                                       RelativePanel.AlignHorizontalCenterWith="HumBox"
+                                       RelativePanel.AlignVerticalCenterWith="HumBox"
+                                       Margin="12.2,49.5,0,0"/>
 
                             </RelativePanel>
 
@@ -289,33 +297,30 @@
                             
                             <Grid Grid.Row="1"
                                   ColumnDefinitions="Auto"
-                                  HorizontalAlignment="Right"
+                                  HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   Margin="80,0">
                                 <TextBlock x:Name="NameBoxPrev"
-                                           FontSize="25"
+                                           FontSize="50"
                                            VerticalAlignment="Center"
-                                           HorizontalAlignment="Right"
-                                           Margin="0,0,0,150"
-                                           Grid.Column="0">
+                                           HorizontalAlignment="Center"
+                                           Margin="0,0,0,150">
                                     Name of the city
                                 </TextBlock>
                                 <TextBlock x:Name="LatBoxPrev"
                                            FontSize="12"
                                            VerticalAlignment="Center"
-                                           HorizontalAlignment="Left"
+                                           HorizontalAlignment="Right"
                                            TextAlignment="Left"
-                                           Margin="0,20,190,0"
-                                           Grid.Column="0">
+                                           Margin="0,30,-280,0">
                                     Latitude of the city
                                 </TextBlock>
                                 <TextBlock x:Name="LonBoxPrev"
                                            FontSize="12"
                                            VerticalAlignment="Bottom"
-                                           HorizontalAlignment="Left"
+                                           HorizontalAlignment="Right"
                                            TextAlignment="Left"
-                                           Margin="0,0,0,40"
-                                           Grid.Column="0">
+                                           Margin="0,0,-280,60">
                                     Longitude of the city
                                 </TextBlock>
                             </Grid>
@@ -325,7 +330,7 @@
                                           VerticalAlignment="Top"
                                           HorizontalAlignment="Center">
                                 
-                                <WrapPanel>
+                                <WrapPanel Margin="0">
 
                                     <Panel x:Name="PanelDay1" Margin="10,0">
                                         <Grid>
@@ -333,7 +338,8 @@
                                                 <RowDefinition />
                                                 <RowDefinition />
                                             </Grid.RowDefinitions>
-                                            <Rectangle Fill="#03001C"
+                                            <Rectangle Grid.Row="0" 
+                                                       Fill="#03001C"
                                                        Height="230"
                                                        Width="250"
                                                        RadiusX="10"
