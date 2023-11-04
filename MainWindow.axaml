@@ -73,7 +73,6 @@
 
 
     <Panel>
-
         <!--AcrylicBlur-->
         <ExperimentalAcrylicBorder IsHitTestVisible="False">
             <ExperimentalAcrylicBorder.Material>
@@ -83,7 +82,14 @@
                     TintOpacity="1"
                     MaterialOpacity="0.6" />
             </ExperimentalAcrylicBorder.Material>
+            <Image Source="Images/BackGround.jpg"
+                   Width="2080"
+                   Height="1080"
+                   Opacity="0.1"
+                   ZIndex="-100"/>
         </ExperimentalAcrylicBorder>
+        
+        
         
         <Grid RowDefinitions="35,*">
 
@@ -106,7 +112,7 @@
                            Width="50"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"
-                           Opacity="0.3" />
+                           Opacity="0.3"/>
                 <Border Grid.Column="0"
                         BorderThickness="0,0.5,0,0"
                         Opacity="0.4"
@@ -201,7 +207,7 @@
                                 
                                 <Rectangle Fill="#03001C"
                                            x:Name="Glass1"
-                                           Opacity="0.3"
+                                           Opacity="0.4"
                                            RadiusX="10"
                                            RadiusY="10"
                                            Height="550"
