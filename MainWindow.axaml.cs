@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Shapes;
 using Avalonia.Interactivity;
 using Newtonsoft.Json;
 using Weather_App.Enum;
@@ -219,11 +220,28 @@ public partial class MainWindow : Window
             
             for (int i = 0; i < AllPanel.Count; i++)
             {
+                Grid grid = new Grid();
+                Rectangle rectangle = new Rectangle();
                 TextBlock date = new AccessText();
                 TextBlock temp = new TextBlock();
                 TextBlock desc = new TextBlock();
                 TextBlock hum = new TextBlock();
                 Image image = new Image();
+
+
+                for (int j = 0; j < 4; j++)
+                {
+                    grid.RowDefinitions.Add(new RowDefinition());
+                }
+                grid.ColumnDefinitions.Add(new ColumnDefinition());
+                grid.ColumnDefinitions.Add(new ColumnDefinition());
+                
+                rectangle.Fill = new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse("#03001C"));
+                rectangle.Width = 250;
+                rectangle.Height = 230;
+                rectangle.RadiusX = 10;
+                rectangle.RadiusY = 10;
+                rectangle.Opacity = 0.3;
 
                 date.Text = fivesDays[i].dt_txt;
                 if (UnitTemp == UnitTemp.Celsius)
@@ -241,20 +259,35 @@ public partial class MainWindow : Window
 
                 desc.Text = fivesDays[i].weather[0].description;
                 hum.Text = $"{fivesDays[i].main.humidity}%";
-
+                
+                Grid.SetRow(date, 0);
+                Grid.SetRow(temp, 1);
+                Grid.SetRow(desc, 2);
+                Grid.SetRow(hum, 3);
+                Grid.SetColumn(date, 0);
+                Grid.SetColumn(temp, 0);
+                Grid.SetColumn(desc, 0);
+                Grid.SetColumn(hum, 0);
+                
                 AllPanel[i].Children.Clear();
-                AllPanel[i].Children.Add(date);
-                AllPanel[i].Children.Add(temp);
-                AllPanel[i].Children.Add(desc);
-                AllPanel[i].Children.Add(hum);
+                AllPanel[i].Children.Add(rectangle);
+                grid.Children.Add(date);
+                grid.Children.Add(temp);
+                grid.Children.Add(desc);
+                grid.Children.Add(hum);
+                AllPanel[i].Children.Add(grid);
                 Conversion.DownloadImageFromUrl($"http://openweathermap.org/img/w/{fivesDays[i].weather[0].icon}.png",
                     $"Images/iconPrev{i.ToString()}.png");
                 if (File.Exists($"Images/iconPrev{i.ToString()}.png"))
                 {
                     image.Source = new Avalonia.Media.Imaging.Bitmap($"Images/iconPrev{i.ToString()}.png");
-                    image.Width = 50;
-                    image.Height = 50;
-                    AllPanel[i].Children.Add(image);
+                    image.Width = 100;
+                    image.Height = 100;
+                    image.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center;
+                    image.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center;
+                    grid.Children.Add(image);
+                    Grid.SetRow(image, 3);
+                    Grid.SetColumn(image, 1);
                 }
             }
         }

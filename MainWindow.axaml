@@ -328,13 +328,20 @@
                                 <WrapPanel>
 
                                     <Panel x:Name="PanelDay1" Margin="10,0">
-                                        <Rectangle Fill="#03001C"
-                                                   Height="230"
-                                                   Width="250"
-                                                   RadiusX="10"
-                                                   RadiusY="10"
-                                                   Opacity="0.3"/>
-                                        <TextBlock Text="forecast1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <Rectangle Fill="#03001C"
+                                                       Height="230"
+                                                       Width="250"
+                                                       RadiusX="10"
+                                                       RadiusY="10"
+                                                       Opacity="0.3"/>
+                                        <TextBlock Text="forecast1" Grid.Row="0"/>
+                                        <TextBlock Text="forecast1" Grid.Row="1"/>
+                                        </Grid>
                                     </Panel>
 
                                     <Panel x:Name="PanelDay2" Margin="10,0">
