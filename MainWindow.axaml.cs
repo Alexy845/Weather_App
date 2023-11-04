@@ -22,7 +22,7 @@ public partial class MainWindow : Window
 
     public string Path = "options.json";
 
-    public List<StackPanel> AllPanel = new List<StackPanel>();
+    public List<Panel> AllPanel = new List<Panel>();
     public UnitTemp UnitTemp;
 
     public MainWindow()
