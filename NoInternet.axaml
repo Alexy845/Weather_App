@@ -22,6 +22,6 @@
                    Opacity="0.7"
                    ZIndex="-100"/>
         </ExperimentalAcrylicBorder>
-        <Button Click="Button_OnClick"/>
+        <Button Click="Button_OnClick" Content="Refresh"/>
     </Panel>
 </Window>
