@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
@@ -162,6 +163,12 @@ public partial class MainWindow : Window
 
     private async void SaveButton_OnClick(object? sender, RoutedEventArgs _)
     {
+        if (!NetworkInterface.GetIsNetworkAvailable())
+        {
+            var window = new NoInternet();
+            window.Show();
+            Close();
+        }
         if (DefaultLocationTextBlock.Text == "" || DefaultCountryTextBlock.Text == "" || DefaultLocationTextBlock.Text is null || DefaultCountryTextBlock.Text is null)
         {
             ErrorMessageBox.Text = "Error: Empty field";
@@ -204,6 +211,12 @@ public partial class MainWindow : Window
 
     private async void GetWeather(string? ville, string? pays)
     {
+        if (!NetworkInterface.GetIsNetworkAvailable())
+        {
+            var window = new NoInternet();
+            window.Show();
+            Close();
+        }
         if (ville is null || pays is null || ville.Length == 0 || pays.Length == 0) return;
         var weather = await _weatherApi.GetWeatherForecast(ville, Conversion.GetCountryCode(pays));
         if (weather is not null)
@@ -252,6 +265,12 @@ public partial class MainWindow : Window
 
     private async void GetWeatherFiveDays(string? ville, string? pays)
     {
+        if (!NetworkInterface.GetIsNetworkAvailable())
+        {
+            var window = new NoInternet();
+            window.Show();
+            Close();
+        }
         if (ville is null || pays is null || ville.Length == 0 || pays.Length == 0) return;
         var weather = await _weatherFiveDays.GetWeatherFiveDays(ville, Conversion.GetCountryCode(pays));
         if (weather is null) return;
