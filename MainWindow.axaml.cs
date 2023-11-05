@@ -254,120 +254,120 @@ public partial class MainWindow : Window
     {
         if (ville is null || pays is null || ville.Length == 0 || pays.Length == 0) return;
         var weather = await _weatherFiveDays.GetWeatherFiveDays(ville, Conversion.GetCountryCode(pays));
-        if (weather is not null)
+        if (weather is null) return;
+        lastLocationPrev = ville;
+        lastCountryPrev = pays;
+        var coordinate = weather.city?.coord;
+        var name = weather.city?.name;
+
+        var fivesDays = new List<WeatherFiveDays.Weather5Days.Day>();
+
+        NameBoxPrev.Text = name;
+        LatBoxPrev.Text = $"Latitude: {coordinate?.lat.ToString(CultureInfo.CurrentCulture)}";
+        LonBoxPrev.Text = $"Longitude: {coordinate?.lon.ToString(CultureInfo.CurrentCulture)}";
+
+        if (weather.list is null) return;
+        
+        foreach (var i in weather.list)
         {
-            lastLocationPrev = ville;
-            lastCountryPrev = pays;
-            var coordinate = weather.city.coord;
-            var name = weather.city.name;
-
-            var fivesDays = new List<WeatherFiveDays.Weather5Days.Day>();
-
-            NameBoxPrev.Text = name;
-            LatBoxPrev.Text = $"Latitude: {coordinate.lat.ToString(CultureInfo.CurrentCulture)}";
-            LonBoxPrev.Text = $"Longitude: {coordinate.lon.ToString(CultureInfo.CurrentCulture)}";
-
-            foreach (var i in weather.list)
+            if (i.dt_txt is not null && i.dt_txt.Contains("12:00:00"))
             {
-                if (i.dtTxt.Contains("12:00:00"))
-                {
-                    fivesDays.Add(i);
-                }
+                fivesDays.Add(i);
+            }
+        }
+        if (fivesDays.Count != _allPanel.Count) return;
+        for (int i = 0; i < _allPanel.Count; i++)
+        {
+            Grid grid = new Grid();
+            Rectangle rectangle = new Rectangle();
+            TextBlock date = new AccessText();
+            TextBlock temp = new TextBlock();
+            TextBlock desc = new TextBlock();
+            TextBlock hum = new TextBlock();
+            Image image = new Image();
+            Image imgHum = new Image();
+
+
+            for (int j = 0; j < 4; j++)
+            {
+                grid.RowDefinitions.Add(new RowDefinition());
             }
 
-            for (int i = 0; i < _allPanel.Count; i++)
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+
+            rectangle.Fill = new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse("#03001C"));
+            rectangle.Width = 250;
+            rectangle.Height = 230;
+            rectangle.RadiusX = 10;
+            rectangle.RadiusY = 10;
+            rectangle.Opacity = 0.3;
+
+            date.Text = fivesDays[i].dt_txt;
+            if (unitTemp == UnitTemp.Celsius)
             {
-                Grid grid = new Grid();
-                Rectangle rectangle = new Rectangle();
-                TextBlock date = new AccessText();
-                TextBlock temp = new TextBlock();
-                TextBlock desc = new TextBlock();
-                TextBlock hum = new TextBlock();
-                Image image = new Image();
-                Image imgHum = new Image();
+                temp.Text = $"{Conversion.KelvinToCelsius(fivesDays[i].main.temp)}°C";
+            }
+            else if (unitTemp == UnitTemp.Fahrenheit)
+            {
+                temp.Text = $"{Conversion.KelvinToFahrenheit(fivesDays[i].main.temp)}°F";
+            }
+            else
+            {
+                temp.Text = $"{fivesDays[i].main.temp}°K";
+            }
 
+            desc.Text = fivesDays[i].weather[0].description;
+            hum.Text = $"{fivesDays[i].main.humidity}%";
 
-                for (int j = 0; j < 4; j++)
-                {
-                    grid.RowDefinitions.Add(new RowDefinition());
-                }
+            date.Margin = new Thickness(60, 20, 0, 0);
+            temp.Margin = new Thickness(20, 40, 0, 0);
+            temp.FontSize = 30;
+            desc.Margin = new Thickness(20, 20, 0, 0);
+            hum.Margin = new Thickness(34, 10, 0, 0);
+            image.Margin = new Thickness(-80, 0, 0, 0);
+            imgHum.Margin = new Thickness(-150, 8.5, 0, 0);
 
-                grid.ColumnDefinitions.Add(new ColumnDefinition());
-                grid.ColumnDefinitions.Add(new ColumnDefinition());
+            if (File.Exists("Images/Humidity.png"))
+            {
+                imgHum.Source = new Avalonia.Media.Imaging.Bitmap("Images/Humidity.png");
+                imgHum.Width = 20;
+                imgHum.Height = 20;
+                imgHum.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center;
+                imgHum.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Top;
+                grid.Children.Add(imgHum);
+                Grid.SetRow(imgHum, 3);
+                Grid.SetColumn(imgHum, 0);
+            }
 
-                rectangle.Fill = new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse("#03001C"));
-                rectangle.Width = 250;
-                rectangle.Height = 230;
-                rectangle.RadiusX = 10;
-                rectangle.RadiusY = 10;
-                rectangle.Opacity = 0.3;
+            Grid.SetRow(date, 0);
+            Grid.SetRow(temp, 1);
+            Grid.SetRow(desc, 2);
+            Grid.SetRow(hum, 3);
+            Grid.SetColumn(date, 0);
+            Grid.SetColumn(temp, 0);
+            Grid.SetColumn(desc, 0);
+            Grid.SetColumn(hum, 0);
 
-                date.Text = fivesDays[i].dtTxt;
-                if (unitTemp == UnitTemp.Celsius)
-                {
-                    temp.Text = $"{Conversion.KelvinToCelsius(fivesDays[i].main.temp)}°C";
-                }
-                else if (unitTemp == UnitTemp.Fahrenheit)
-                {
-                    temp.Text = $"{Conversion.KelvinToFahrenheit(fivesDays[i].main.temp)}°F";
-                }
-                else
-                {
-                    temp.Text = $"{fivesDays[i].main.temp}°K";
-                }
-
-                desc.Text = fivesDays[i].weather[0].description;
-                hum.Text = $"{fivesDays[i].main.humidity}%";
-
-                date.Margin = new Thickness(60, 20, 0, 0);
-                temp.Margin = new Thickness(20, 40, 0, 0);
-                temp.FontSize = 30;
-                desc.Margin = new Thickness(20, 20, 0, 0);
-                hum.Margin = new Thickness(34, 10, 0, 0);
-                image.Margin = new Thickness(-80, 0, 0, 0);
-                imgHum.Margin = new Thickness(-150, 8.5, 0, 0);
-
-                if (File.Exists("Images/Humidity.png"))
-                {
-                    imgHum.Source = new Avalonia.Media.Imaging.Bitmap("Images/Humidity.png");
-                    imgHum.Width = 20;
-                    imgHum.Height = 20;
-                    imgHum.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center;
-                    imgHum.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Top;
-                    grid.Children.Add(imgHum);
-                    Grid.SetRow(imgHum, 3);
-                    Grid.SetColumn(imgHum, 0);
-                }
-
-                Grid.SetRow(date, 0);
-                Grid.SetRow(temp, 1);
-                Grid.SetRow(desc, 2);
-                Grid.SetRow(hum, 3);
-                Grid.SetColumn(date, 0);
-                Grid.SetColumn(temp, 0);
-                Grid.SetColumn(desc, 0);
-                Grid.SetColumn(hum, 0);
-
-                _allPanel[i].Children.Clear();
-                _allPanel[i].Children.Add(rectangle);
-                grid.Children.Add(date);
-                grid.Children.Add(temp);
-                grid.Children.Add(desc);
-                grid.Children.Add(hum);
-                _allPanel[i].Children.Add(grid);
-                Conversion.DownloadImageFromUrl($"http://openweathermap.org/img/w/{fivesDays[i].weather[0].icon}.png",
-                    $"Images/iconPrev{i.ToString()}.png");
-                if (File.Exists($"Images/iconPrev{i.ToString()}.png"))
-                {
-                    image.Source = new Avalonia.Media.Imaging.Bitmap($"Images/iconPrev{i.ToString()}.png");
-                    image.Width = 100;
-                    image.Height = 100;
-                    image.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center;
-                    image.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center;
-                    grid.Children.Add(image);
-                    Grid.SetRow(image, 3);
-                    Grid.SetColumn(image, 1);
-                }
+            _allPanel[i].Children.Clear();
+            _allPanel[i].Children.Add(rectangle);
+            grid.Children.Add(date);
+            grid.Children.Add(temp);
+            grid.Children.Add(desc);
+            grid.Children.Add(hum);
+            _allPanel[i].Children.Add(grid);
+            Conversion.DownloadImageFromUrl($"http://openweathermap.org/img/w/{fivesDays[i].weather[0].icon}.png",
+                $"Images/iconPrev{i.ToString()}.png");
+            if (File.Exists($"Images/iconPrev{i.ToString()}.png"))
+            {
+                image.Source = new Avalonia.Media.Imaging.Bitmap($"Images/iconPrev{i.ToString()}.png");
+                image.Width = 100;
+                image.Height = 100;
+                image.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center;
+                image.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center;
+                grid.Children.Add(image);
+                Grid.SetRow(image, 3);
+                Grid.SetColumn(image, 1);
             }
         }
     }

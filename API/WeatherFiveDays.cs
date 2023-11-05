@@ -112,7 +112,7 @@ public class WeatherFiveDays
                 public string? pod { get; set; }
             }
 
-            public string? dtTxt { get; set; }
+            public string? dt_txt { get; set; }
         }
 
         public City? city { get; set; }
