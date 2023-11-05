@@ -4,6 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Weather_App.NoInternet"
+        Background="#191919"
+        Opacity="1"
         Title="NoInternet"
         TransparencyLevelHint="AcrylicBlur"
         ExtendClientAreaToDecorationsHint="True">
@@ -13,19 +15,19 @@
             <ExperimentalAcrylicBorder.Material>
                 <ExperimentalAcrylicMaterial
                     BackgroundSource="Digger"
-                    TintColor="#03001C"
-                    TintOpacity="1"
-                    MaterialOpacity="0.6" />
+                    TintColor="Black"
+                    TintOpacity="0.7"
+                    MaterialOpacity="1" />
             </ExperimentalAcrylicBorder.Material>
             <Image Source="Images/noConnection.jpg"
-                   Height="1080"
-                   Opacity="0.7"
+                   Height="400"
+                   Opacity="0.6"
                    ZIndex="-100"/>
         </ExperimentalAcrylicBorder>
         <Button Click="Button_OnClick" Content="Refresh"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Margin="0,60,0,0"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,80"
                 Width="100"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
