@@ -163,7 +163,7 @@ public partial class MainWindow : Window
 
     private async void SaveButton_OnClick(object? sender, RoutedEventArgs _)
     {
-        if (!NetworkInterface.GetIsNetworkAvailable() && !Internet.DnsTest())
+        if (!NetworkInterface.GetIsNetworkAvailable() || !Internet.DnsTest())
         {
             var window = new NoInternet();
             window.Show();
@@ -211,7 +211,7 @@ public partial class MainWindow : Window
 
     private async void GetWeather(string? ville, string? pays)
     {
-        if (!NetworkInterface.GetIsNetworkAvailable() && !Internet.DnsTest())
+        if (!NetworkInterface.GetIsNetworkAvailable() || !Internet.DnsTest())
         {
             var window = new NoInternet();
             window.Show();
@@ -265,7 +265,7 @@ public partial class MainWindow : Window
 
     private async void GetWeatherFiveDays(string? ville, string? pays)
     {
-        if (!NetworkInterface.GetIsNetworkAvailable() && !Internet.DnsTest())
+        if (!NetworkInterface.GetIsNetworkAvailable() || !Internet.DnsTest())
         {
             var window = new NoInternet();
             window.Show();

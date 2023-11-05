@@ -15,7 +15,7 @@ public partial class NoInternet : Window
 
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
-        if (NetworkInterface.GetIsNetworkAvailable())
+        if (NetworkInterface.GetIsNetworkAvailable() || Internet.DnsTest())
         {
             var window = new MainWindow();
             window.Show();
