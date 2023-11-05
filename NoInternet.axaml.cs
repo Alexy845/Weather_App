@@ -9,13 +9,12 @@ public partial class NoInternet : Window
 {
     public NoInternet()
     {
-        Console.WriteLine("Nouvelle Page");
         InitializeComponent();
     }
 
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
-        if (NetworkInterface.GetIsNetworkAvailable() || Internet.DnsTest())
+        if (NetworkInterface.GetIsNetworkAvailable() && Internet.DnsTest())
         {
             var window = new MainWindow();
             window.Show();
