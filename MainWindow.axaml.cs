@@ -193,6 +193,8 @@ public partial class MainWindow : Window
                 jsonObj["DefaultCountry"] = DefaultCountryTextBlock.Text;
                 string output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
                 await File.WriteAllTextAsync(Path, output);
+                defaultLocation = DefaultLocationTextBlock.Text;
+                defaultCountry = DefaultCountryTextBlock.Text;
                 ReloadSearch();
                 ErrorMessageBox.Text = "Default Location saved";
             }
@@ -205,8 +207,12 @@ public partial class MainWindow : Window
 
     private void SearchButton_Click(object? sender, RoutedEventArgs _)
     {
-        if (SearchBar.Text != null && CountryBar.Text != null)
+        if (SearchBar.Text is not null && CountryBar.Text is not null && SearchBar.Text.Length != 0 && CountryBar.Text.Length != 0)
             GetWeather(SearchBar.Text, CountryBar.Text);
+        else
+        {
+            GetWeather(defaultLocation, defaultCountry);
+        }
     }
 
     private async void GetWeather(string? ville, string? pays)
@@ -257,9 +263,13 @@ public partial class MainWindow : Window
 
     private void SearchButtonPrev_Click(object? sender, RoutedEventArgs _)
     {
-        if (SearchBarPrev.Text is not null || CountryBarPrev.Text is not null)
+        if (SearchBarPrev.Text is not null && CountryBarPrev.Text is not null && SearchBarPrev.Text.Length != 0 && CountryBarPrev.Text.Length != 0)
         {
             GetWeatherFiveDays(SearchBarPrev.Text, CountryBarPrev.Text);
+        }
+        else
+        {
+            GetWeatherFiveDays(defaultLocation, defaultCountry);
         }
     }
 
