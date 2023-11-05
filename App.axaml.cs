@@ -14,7 +14,7 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        if (NetworkInterface.GetIsNetworkAvailable())
+        if (NetworkInterface.GetIsNetworkAvailable() && Internet.DnsTest())
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
