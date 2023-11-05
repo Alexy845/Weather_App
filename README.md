@@ -1,8 +1,8 @@
 <!---->
 
 <div align="center">
-    <h1>WEATHER-APP</h1>
-    <h3>◦ Storm or shine, Weather-App has you covered!</h3>
+    <h1>WEATHER APP</h1>
+    <h3>◦ Storm or shine, Weather App has you covered!</h3>
     <h3>◦ Developed with the software and tools below.</h3>
 </div>
 
@@ -22,7 +22,7 @@
 - [⚙️ Modules](#modules)
 - [🚀 Getting Started](#-getting-started)
     - [🔧 Installation](#-installation)
-    - [🤖 Running Weather-App](#-running-Weather-App)
+    - [🤖 Running Weather_App](#-running-Weather_App)
     - [🧪 Tests](#-tests)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
@@ -33,7 +33,7 @@
 
 ## 📍 Overview
 
-The Weather-App repository is a project that allows users to retrieve weather forecast data for a specified location. It includes features like retrieving weather data from an API, displaying weather information, allowing users to change temperature units and language preferences, saving settings to a JSON file, and performing searches for weather information based on user input. It also handles network availability and displays relevant error messages.
+The Weather App repository is a project that allows users to retrieve weather forecast data for a specified location. It includes features like retrieving weather data from an API, displaying weather information, allowing users to change temperature units and language preferences, saving settings to a JSON file, and performing searches for weather information based on user input. It also handles network availability and displays relevant error messages.
 
 ---
 
@@ -52,7 +52,7 @@ The Weather-App repository is a project that allows users to retrieve weather fo
 ## 📂 Repository Structure
 
 ```sh
-└── Weather-App/
+└── Weather_App/
     ├── API/
     │   ├── WeatherApi.cs
     │   └── WeatherFiveDays.cs
@@ -156,7 +156,7 @@ Please ensure you have the following dependencies installed on your system:
 
 ### 🔧 Installation
 
-1. Clone the Weather-App repository:
+1. Clone the Weather_App repository:
 ```sh
 git clone https://ytrack.learn.ynov.com/git/jmarine/Weather_App
 ```
@@ -171,7 +171,7 @@ cd Weather_App
 dotnet build
 ```
 
-### 🤖 Running Weather-App
+### 🤖 Running Weather_App
 
 ```sh
 dotnet run
@@ -189,15 +189,14 @@ dotnet test
 Contributions are welcome! Here are several ways you can contribute:
 
 - **[Submit Pull Requests](https://ytrack.learn.ynov.com/git/jmarine/Weather_App/src/branch/master/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
-- **[Join the Discussions](https://github.com/Ahliko/Weather-App/discussions)**: Share your insights, provide feedback, or ask questions.
-- **[Report Issues](https://github.com/Ahliko/Weather-App/issues)**: Submit bugs found or log feature requests for us.
+- **[Report Issues](https://ytrack.learn.ynov.com/git/jmarine/Weather_App/issues)**: Submit bugs found or log feature requests for us.
 
 #### *Contributing Guidelines*
 
 <details closed>
 <summary>Click to expand</summary>
 
-1. **Fork the Repository**: Start by forking the project repository to your GitHub account.
+1. **Fork the Repository**: Start by forking the project repository to your Gitea account.
 2. **Clone Locally**: Clone the forked repository to your local machine using a Git client.
    ```sh
    git clone <your-forked-repo-url>
