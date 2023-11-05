@@ -32,7 +32,7 @@ public enum Country
     Dutch,
     Polish,
     Portuguese,
-    Português_Brasil,
+    PortuguêsBrasil,
     Romanian,
     Russian,
     Swedish,
@@ -44,7 +44,7 @@ public enum Country
     Turkish,
     Ukrainian,
     Vietnamese,
-    Chinese_Simplified,
-    Chinese_Traditional,
+    ChineseSimplified,
+    ChineseTraditional,
     Zulu
 }

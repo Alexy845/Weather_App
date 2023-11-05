@@ -9,142 +9,142 @@ public class SetCountry
         switch (index + 1)
         {
             case 1:
-                MainWindow.Country = Country.Afrikaan;
+                MainWindow.country = Country.Afrikaan;
                 return;
             case 2:
-                MainWindow.Country = Country.Albanian;
+                MainWindow.country = Country.Albanian;
                 return;
             case 3:
-                MainWindow.Country = Country.Arabic;
+                MainWindow.country = Country.Arabic;
                 return;
             case 4:
-                MainWindow.Country = Country.Azerbaijani;
+                MainWindow.country = Country.Azerbaijani;
                 return;
             case 5:
-                MainWindow.Country = Country.Bulgarian;
+                MainWindow.country = Country.Bulgarian;
                 return;
             case 6:
-                MainWindow.Country = Country.Catalan;
+                MainWindow.country = Country.Catalan;
                 return;
             case 7:
-                MainWindow.Country = Country.Czech;
+                MainWindow.country = Country.Czech;
                 return;
             case 8:
-                MainWindow.Country = Country.Danish;
+                MainWindow.country = Country.Danish;
                 return;
             case 9:
-                MainWindow.Country = Country.German;
+                MainWindow.country = Country.German;
                 return;
             case 10:
-                MainWindow.Country = Country.Greek;
+                MainWindow.country = Country.Greek;
                 return;
             case 11:
-                MainWindow.Country = Country.English;
+                MainWindow.country = Country.English;
                 return;
             case 12:
-                MainWindow.Country = Country.Basque;
+                MainWindow.country = Country.Basque;
                 return;
             case 13:
-                MainWindow.Country = Country.Persian;
+                MainWindow.country = Country.Persian;
                 return;
             case 14:
-                MainWindow.Country = Country.Finnish;
+                MainWindow.country = Country.Finnish;
                 return;
             case 15:
-                MainWindow.Country = Country.French;
+                MainWindow.country = Country.French;
                 return;
             case 16:
-                MainWindow.Country = Country.Galician;
+                MainWindow.country = Country.Galician;
                 return;
             case 17:
-                MainWindow.Country = Country.Hebrew;
+                MainWindow.country = Country.Hebrew;
                 return;
             case 18:
-                MainWindow.Country = Country.Hindi;
+                MainWindow.country = Country.Hindi;
                 return;
             case 19:
-                MainWindow.Country = Country.Croatian;
+                MainWindow.country = Country.Croatian;
                 return;
             case 20:
-                MainWindow.Country = Country.Hungarian;
+                MainWindow.country = Country.Hungarian;
                 return;
             case 21:
-                MainWindow.Country = Country.Indonesian;
+                MainWindow.country = Country.Indonesian;
                 return;
             case 22:
-                MainWindow.Country = Country.Italian;
+                MainWindow.country = Country.Italian;
                 return;
             case 23:
-                MainWindow.Country = Country.Japanese;
+                MainWindow.country = Country.Japanese;
                 return;
             case 24:
-                MainWindow.Country = Country.Korean;
+                MainWindow.country = Country.Korean;
                 return;
             case 25:
-                MainWindow.Country = Country.Lithuanian;
+                MainWindow.country = Country.Lithuanian;
                 return;
             case 26:
-                MainWindow.Country = Country.Macedonian;
+                MainWindow.country = Country.Macedonian;
                 return;
             case 27:
-                MainWindow.Country = Country.Norwegian;
+                MainWindow.country = Country.Norwegian;
                 return;
             case 28:
-                MainWindow.Country = Country.Dutch;
+                MainWindow.country = Country.Dutch;
                 return;
             case 29:
-                MainWindow.Country = Country.Polish;
+                MainWindow.country = Country.Polish;
                 return;
             case 30:
-                MainWindow.Country = Country.Portuguese;
+                MainWindow.country = Country.Portuguese;
                 return;
             case 31:
-                MainWindow.Country = Country.Português_Brasil;
+                MainWindow.country = Country.PortuguêsBrasil;
                 return;
             case 32:
-                MainWindow.Country = Country.Romanian;
+                MainWindow.country = Country.Romanian;
                 return;
             case 33:
-                MainWindow.Country = Country.Russian;
+                MainWindow.country = Country.Russian;
                 return;
             case 34:
-                MainWindow.Country = Country.Swedish;
+                MainWindow.country = Country.Swedish;
                 return;
             case 35:
-                MainWindow.Country = Country.Slovak;
+                MainWindow.country = Country.Slovak;
                 return;
             case 36:
-                MainWindow.Country = Country.Slovenian;
+                MainWindow.country = Country.Slovenian;
                 return;
             case 37:
-                MainWindow.Country = Country.Spanish;
+                MainWindow.country = Country.Spanish;
                 return;
             case 38:
-                MainWindow.Country = Country.Serbian;
+                MainWindow.country = Country.Serbian;
                 return;
             case 39:
-                MainWindow.Country = Country.Thai;
+                MainWindow.country = Country.Thai;
                 return;
             case 40:
-                MainWindow.Country = Country.Turkish;
+                MainWindow.country = Country.Turkish;
                 return;
             case 41:
-                MainWindow.Country = Country.Ukrainian;
+                MainWindow.country = Country.Ukrainian;
                 return;
             case 42:
-                MainWindow.Country = Country.Vietnamese;
+                MainWindow.country = Country.Vietnamese;
                 return;
             case 43:
-                MainWindow.Country = Country.Chinese_Simplified;
+                MainWindow.country = Country.ChineseSimplified;
                 return;
             case 44:
-                MainWindow.Country = Country.Chinese_Traditional;
+                MainWindow.country = Country.ChineseTraditional;
                 return;
             case 45:
-                MainWindow.Country = Country.Zulu;
+                MainWindow.country = Country.Zulu;
                 return;
             default:
-                MainWindow.Country = Country.English;
+                MainWindow.country = Country.English;
                 return;
         }
     }

@@ -162,7 +162,8 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
                                         Margin="5"
-                                        Opacity="0.7"/>
+                                        Opacity="0.7"
+                                        Click="SearchButton_Click"/>
                             </Grid>
 
                             <Grid Grid.Column="1" Grid.Row="1"
@@ -300,7 +301,8 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
                                         Margin="5"
-                                        Opacity="0.7"/>
+                                        Opacity="0.7"
+                                        Click="SearchButtonPrev_Click"/>
                             </Grid>
                             
                             <Grid Grid.Row="1"

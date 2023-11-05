@@ -1,9 +1,6 @@
 using System;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
-
 using System.Net.NetworkInformation;
 
 namespace Weather_App;

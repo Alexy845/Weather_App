@@ -1,7 +1,5 @@
 using System;
-using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Net;
 
@@ -14,11 +12,11 @@ public class Conversion
         return (float)Math.Floor(kelvin - 273.15f);
     }
 
-    public static string GetCountryCode(string countryName)
+    public static string GetCountryCode(string? countryName)
     {
         var regions = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
             .Select(x => new RegionInfo(x.Name));
-        var region = regions.FirstOrDefault(r => r.EnglishName.Contains(countryName));
+        var region = regions.FirstOrDefault(r => countryName != null && r.EnglishName.Contains(countryName));
         return region != null ? region.TwoLetterISORegionName : "Country not found";
     }
 
