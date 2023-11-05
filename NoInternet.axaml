@@ -22,6 +22,18 @@
                    Opacity="0.7"
                    ZIndex="-100"/>
         </ExperimentalAcrylicBorder>
-        <Button Click="Button_OnClick" Content="Refresh"/>
+        <Button Click="Button_OnClick" Content="Refresh"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,60,0,0"
+                Width="100"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                BorderBrush="#EDEDED"
+                BorderThickness="0.5"
+                Foreground="#EDEDED"
+                Opacity="0.4"
+                Height="25"
+                FontSize="12"/>
     </Panel>
 </Window>
